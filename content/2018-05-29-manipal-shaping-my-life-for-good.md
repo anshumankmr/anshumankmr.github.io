@@ -1,0 +1,27 @@
+---
+title: "Manipal – Shaping My Life for Good!"
+date: "2018-05-29"
+articleId: "5e9f7ae6-9ba1-410d-b4b2-f992f328b188"
+slug: "manipal-shaping-my-life-for-good"
+---
+
+Coming to MIT has been one of the most important decisions in my life. I can recall that way back in the months after board exams were held in 2016, each hour used seemed to take forever to pass as the anxiety of waiting for the results felt like a sword hanging over my head.
+
+I finally got the closure upon receiving the results of my exams. After having been accepted in quite a few colleges, I was faced with a tough decision of choosing from a variety of colleges and there I was, in the middle of another dilemma.
+
+**Spoiler Alert **: I chose MIT Manipal and I have been studying Computer Science here for the past two years. I can say I have not regretted it. And I never will. This place made me feel like I belonged here. I have a variety of interests, not all of them are academic. I was looking forward to interacting with people of all age groups and from places all over the country. The big question, however, was whether I’d be happy at MIT, Manipal.
+
+I have been told that the right college is a match to be made, not something that I can just win. This was a mantra I was determined to stick to. I would absolutely not end up at Manipal unless I knew it was the right place for me.
+Now that I was here, I couldn’t be more glad. People here are very focused about what they want in life and I was easily able to find a group of people with similar goals as mine in no time. Working with them, I have learnt new skills that will surely help in my career and work together on important projects. Plus the sheer amount of clubs to work in is amazing and there is a club here for almost everything.
+
+But that doesn’t mean that people here are just interested in all matters related to the book. I began gaming after joining the college and began watching shows and movies I had never heard of before and found people who had a similar interest as mine. I could engage in meaningful conversations about life. I learnt newer things about myself which I was oblivious to. But this could have been at any other college, couldn’t it? What makes this college special to me? First, there was the beauty of the surroundings that made me open my eyes to the fact that most of Manipal seems like a place you would often see on a postcard. I could spend forever just trying to appreciate the aesthetics of the place. I have often taken my cycle around for rides to several places such as Udupi or the breath-taking ‘End Point’. Living at a short distance from beaches was an added bonus. The second reason was how I have been freely able to converse with people of completely different cultures than mine, with people from almost every state in the country and folks from outside the nation as well. As Mark Twain puts it,
+>_Travel is fatal to prejudice, bigotry, and narrow-mindedness, and many of our people need it sorely on these accounts. Broad, wholesome, charitable views of men and things cannot be acquired by vegetating in one little corner of the earth all one’s lifetime_
+
+Well, I certainly haven’t been all around the globe but having people around of different backgrounds, education etc. made me see things in ways I haven’t before and I believe it helps me become a better person. The third reason was how accepting the people have been. I felt the first time coming here that local people might have a bias against people of other cultures. I was glad to find out that was never the case. Everyone spoke Hindi here, just as well as I could.
+The policies of the college are also worth mentioning as they are pro students. The food in the canteens and the shops around is also something that I loved.
+In conclusion, I would just like to say Manipal is a definitely a great place to be not just to shape your career but also your inner self.
+
+
+
+
+**As featured on my college website, [experience.manipal.edu](https://web.archive.org/save/https://manipal.edu/mu/blog/news-list/article/manipal-shaping-my-life-for-good.html)**

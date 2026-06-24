@@ -1,0 +1,13 @@
+{
+  "data": [
+    {
+      "id": 8,
+      "attributes": {
+        "Title": "Preparing for the Google Cloud Professional Developer Exam",
+        "date": "2022-05-04",
+        "articleId": "ce00f437-22d2-4db4-a29e-fb65c3d54f8d",
+        "Content": "I gave the Professional Cloud Developer Exam in December 2022.\n\nA few things that I have to reccomend are\n\n\n1) [A Cloud Guru's excellent course](https://learn.acloud.guru/course/e287094b-b3bb-48b6-a6e1-c2d1f80f73b4/dashboard), though it is slightly outdated, has a tonne of good questions with great explanations\n\n2) Google itself offers an excellent course via Coursera called,\"Preparing for Google Cloud Certification: Cloud Developer\". This covered some topics related to Cloud Run and Anthos, which are not really covered anywhere else (apart from the documentation).\n\n3) This list of topics to definitely cover, which is a fork of another repo, but I have added some of my post exams [info](https://github.com/anshumankmr/google-certified-professional-cloud-developer). I believe this might still be the best source of information overall, considering it is provided by Google itself. \n\nThere are Udemy Test courses such as [this](https://www.udemy.com/course/google-professional-cloud-developer-gcp-exams/learn/quiz/5477322#overview) or [this](https://www.udemy.com/course/google-professional-cloud-developer-exam-test-2023-p/learn/quiz/5647744#overview), which I would stay away from due to the low quality nature of explanations and materials provided."
+      }
+    }
+  ]
+}

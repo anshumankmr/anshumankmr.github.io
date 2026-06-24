@@ -1,0 +1,12 @@
+---
+title: "What villain actually had a point?"
+date: "2018-04-01"
+articleId: "39fbd3c9-ff52-47ce-afa8-6ab1d5c9f147"
+slug: "what-villain-actually-had-a-point"
+---
+
+Roy Batty from the Blade Runner (1982) was the antagonist of the story but hardly a true villain. He was a genetically engineered life form that were created by humans to do tasks that they wouldn’t do themselves. But the problem was that they were sentient beings and thus they had their own rights but they were instead tortured and made to work in horrible conditions. 
+
+![Roy Batty](https://qph.cf2.quoracdn.net/main-qimg-fc7cb09aead69103bbde119a87918121-lq)
+
+To top it off, they had life span of only four years in order to curb any problems, so in Blade Runner we meet Roy and his friends who had escaped from the humans . They are just trying to find their maker, the Tyrell Corporation in order to make them live a normal life. Everything they do is done only to save their lives and the only time they do something bad is when they kill the corrupt Tyrell when he refuses to help them. Plus, in the end Roy saves the life of the hero, Rick Deckard.
