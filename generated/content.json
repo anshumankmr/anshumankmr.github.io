@@ -3,6 +3,15 @@
     {
       "id": 1,
       "attributes": {
+        "Title": "I Ran a Personal Blog on AWS. I Deserve What Happened.",
+        "date": "2026-06-27",
+        "articleId": "c5818523-6d19-4674-8dd0-78fe719a6d3b",
+        "Content": "For years I ran this blog on GCP. Cloud Build for the pipeline, GCS for the bucket, Strapi as the CMS. Strapi is a headless CMS — a full application with a database, an admin panel, and an API — which is a lot of machinery for a blog that a few dozen people read. I ran it anyway. It felt professional.\n\nThen Google charged me ₹7,000 for a Google Translate API key I had never used. Not a billing error. Not a test. A key I enabled, never called, and forgot existed. I asked for a refund. They said no. I migrated to AWS that week.\n\nThis was not a considered architectural decision. It was spite.\n\nI set up an S3 bucket, wrote Terraform to manage IAM roles, wired up OIDC authentication between GitHub Actions and AWS, and told myself this was an improvement. It was not an improvement. It was the same overengineered blog on different infrastructure, now with the added complexity of Terraform state and IAM policies to maintain.\n\nAt some point — honestly, about a year ago — I knew the setup was overkill. The content pipeline, the CMS, the deploy tooling — none of it was making the writing better. It was just cost and complexity I'd been carrying long enough that dismantling it felt like more effort than keeping it. The GCP bill was the thing that finally made the effort feel worth it.\n\nSo I cut it. Strapi is gone — the posts live as markdown files fetched from a JSON file on GitHub. GitHub Actions builds it. Cloudflare Pages serves it for free. No database, no CMS, no IAM roles. The pipeline is one YAML file and a single deploy command.\n\nThe blog is the same. The infrastructure bill is zero.\n\nGoogle still hasn't refunded the ₹7,000. At this point I consider it the most expensive lesson in not normalizing complexity."
+      }
+    },
+    {
+      "id": 2,
+      "attributes": {
         "Title": "I Built an MCP Server So Claude Could Manage My Blog — Here's What Actually Happened",
         "date": "2026-06-21",
         "articleId": "254e12f5-ed43-4895-a9a2-42b8622376c8",
@@ -10,7 +19,7 @@
       }
     },
     {
-      "id": 2,
+      "id": 3,
       "attributes": {
         "Title": "Building a Scalable Music Recommendation System with AutoGen: A Real-World Implementation",
         "date": "2025-02-22",
@@ -19,7 +28,7 @@
       }
     },
     {
-      "id": 3,
+      "id": 4,
       "attributes": {
         "Title": "Step-by-Step: Building My Blog with JAMStack and Google Cloud",
         "date": "2023-08-31",
@@ -28,7 +37,7 @@
       }
     },
     {
-      "id": 4,
+      "id": 5,
       "attributes": {
         "Title": "Jovian Generative AI Hackathon June 2023",
         "date": "2023-08-02",
@@ -37,7 +46,7 @@
       }
     },
     {
-      "id": 5,
+      "id": 6,
       "attributes": {
         "Title": "Streaming using Flask and React",
         "date": "2023-06-30",
@@ -46,7 +55,7 @@
       }
     },
     {
-      "id": 6,
+      "id": 7,
       "attributes": {
         "Title": "Is ChatGPT really destroying Chegg's fortunes?",
         "date": "2023-05-04",
@@ -55,7 +64,7 @@
       }
     },
     {
-      "id": 7,
+      "id": 8,
       "attributes": {
         "Title": "Thoughts on Evil Dead Rise (2023)",
         "date": "2023-03-30",
@@ -64,7 +73,7 @@
       }
     },
     {
-      "id": 8,
+      "id": 9,
       "attributes": {
         "Title": "Preparing for the Google Cloud Professional Developer Exam",
         "date": "2022-05-04",
@@ -73,7 +82,7 @@
       }
     },
     {
-      "id": 9,
+      "id": 10,
       "attributes": {
         "Title": "An Introduction To MVCS Architecture",
         "date": "2021-04-20",
@@ -82,7 +91,7 @@
       }
     },
     {
-      "id": 10,
+      "id": 11,
       "attributes": {
         "Title": "Manipal – Shaping My Life for Good!",
         "date": "2018-05-29",
@@ -91,7 +100,7 @@
       }
     },
     {
-      "id": 11,
+      "id": 12,
       "attributes": {
         "Title": "What villain actually had a point?",
         "date": "2018-04-01",
