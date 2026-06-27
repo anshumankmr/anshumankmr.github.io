@@ -2,7 +2,7 @@ name: Build content JSON
 
 on:
   push:
-    branches: [main]
+    branches: [main, master]
     paths:
       - 'content/**'
       - 'scripts/**'
