@@ -36,7 +36,7 @@ const noteObjects = notes.map(({ data, content, sourcePath }) => ({
   noteId: data.noteId, slug: data.slug, publishedAt: data.publishedAt, content, sourcePath,
 }));
 fs.mkdirSync(generated, { recursive: true });
-fs.writeFileSync(path.join(generated, 'content.json'), JSON.stringify({ data: blogs }, null, 2) + '\n');
+fs.writeFileSync(path.join(generated, 'content.json'), JSON.stringify({ data: blogs, notes: noteObjects }, null, 2) + '\n');
 fs.writeFileSync(path.join(generated, 'notes.json'), JSON.stringify({ data: noteObjects }, null, 2) + '\n');
 writeCollection('posts', blogs, posts.map(post => post.data.slug));
 writeCollection('notes', noteObjects, notes.map(note => note.data.slug));

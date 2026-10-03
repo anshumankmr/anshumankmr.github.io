@@ -132,5 +132,14 @@
         "sourcePath": "content/2018-04-01-what-villain-actually-had-a-point.md"
       }
     }
+  ],
+  "notes": [
+    {
+      "noteId": "c1735bac-7940-48ca-8f47-6665266f0bda",
+      "slug": "2026-10-03-1722-c1735bac",
+      "publishedAt": "2026-10-03T17:22:37+05:30",
+      "content": "Made a [browser script](https://gist.github.com/anshumankmr/bbbe9a7b77c0efc87869373068a40696) that exports LeetCode submissions to CSV using your existing login. Claude Tasks reads that history to pick problems worth revisiting and new ones to try. Next: a local-first browser extension to automate the export.",
+      "sourcePath": "notes/2026-10-03-1722-c1735bac.md"
+    }
   ]
 }

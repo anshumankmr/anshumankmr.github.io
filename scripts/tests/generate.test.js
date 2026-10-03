@@ -19,6 +19,7 @@ test('generation includes published notes, excludes drafts, and removes stale JS
     assert.equal(run.status, 0, run.stderr);
     const load = name => JSON.parse(fs.readFileSync(path.join(root, 'generated', name)));
     const notes = load('notes.json').data;
+    assert.deepEqual(load('content.json').notes, notes);
     assert.equal(notes.length, 1);
     assert.equal(notes[0].content, 'Published thought.');
     assert.equal(notes[0].sourcePath, 'notes/2026-10-03-1630-note.md');
@@ -29,6 +30,7 @@ test('generation includes published notes, excludes drafts, and removes stale JS
     run = spawnSync(process.execPath, [script], { env, encoding: 'utf8' });
     assert.equal(run.status, 0, run.stderr);
     assert.deepEqual(load('notes.json').data, []);
+    assert.deepEqual(load('content.json').notes, []);
     assert.deepEqual(fs.readdirSync(path.join(root, 'generated', 'notes')), []);
   } finally { fs.rmSync(root, { recursive: true }); }
 });

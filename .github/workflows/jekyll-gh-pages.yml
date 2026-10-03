@@ -5,6 +5,18 @@ on:
   # Runs on pushes targeting the default branch
   push:
     branches: ["master"]
+    # Content pushes deploy via workflow_run below, once "Build content JSON" has
+    # committed generated/. That commit uses GITHUB_TOKEN so it can't fire a push event.
+    paths-ignore:
+      - 'content/**'
+      - 'notes/**'
+      - 'scripts/**'
+      - 'package.json'
+
+  workflow_run:
+    workflows: ["Build content JSON"]
+    types: [completed]
+    branches: [master]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -40,6 +52,7 @@ jobs:
 
   # Deployment job
   deploy:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -49,3 +62,17 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+
+  # Tell the blog to rebuild so it fetches the freshly deployed feeds.
+  # Requires a PAT with repo access to anshumankmr/myblog in GHUB_DISPATCH_TOKEN.
+  notify-blog:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger blog rebuild
+        run: |
+          curl -fsS -X POST \
+            -H "Authorization: Bearer ${{ secrets.GHUB_DISPATCH_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/anshumankmr/myblog/dispatches \
+            -d '{"event_type":"content-updated"}'
