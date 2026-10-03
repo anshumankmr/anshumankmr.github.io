@@ -81,7 +81,7 @@ I wrote the tests around ways to get in that should fail. They use generated RSA
 - an unknown signing key and a JWKS outage
 - missing configuration
 
-Every one of those must be rejected **before** anything reaches GitHub. The suite is at 121 passing now, and I'm honest about its limits: mocked tests don't prove real Auth0 provisioning, real login, token refresh or a web client's quirks.
+Every one of those must be rejected **before** anything reaches GitHub. The suite is at 125 passing now, and I'm honest about its limits: mocked tests don't prove real Auth0 provisioning, real login, token refresh or a web client's quirks.
 
 ## A deploy gotcha: workflow-only changes don't deploy
 
