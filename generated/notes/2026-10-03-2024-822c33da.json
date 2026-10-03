@@ -6,13 +6,6 @@
       "publishedAt": "2026-10-03T20:24:26+05:30",
       "content": "anshumankumar.net got an A+ on the [Website Carbon Calculator](https://www.websitecarbon.com/website/anshumankumar-net/): cleaner than 93% of pages tested, 0.04 g of CO2 per visit, on sustainable energy. Modeled at 10,000 monthly views (generous, I know), that's about 4.5 kg of CO2 a year.\n\nJamstack, I love you. Prebuilt static files on a CDN means almost nothing to transfer and nothing to compute per request. Boring tech is green tech.\n\nIf your site is mostly content, try it: pick a static site generator, push to git, deploy to a CDN, then run your URL through the calculator and see how you stack up.",
       "sourcePath": "notes/2026-10-03-2024-822c33da.md"
-    },
-    {
-      "noteId": "c1735bac-7940-48ca-8f47-6665266f0bda",
-      "slug": "2026-10-03-1722-c1735bac",
-      "publishedAt": "2026-10-03T17:22:37+05:30",
-      "content": "Made a [browser script](https://gist.github.com/anshumankmr/bbbe9a7b77c0efc87869373068a40696) that exports LeetCode submissions to CSV using your existing login. Claude Tasks reads that history to pick problems worth revisiting and new ones to try. Next: a local-first browser extension to automate the export.",
-      "sourcePath": "notes/2026-10-03-1722-c1735bac.md"
     }
   ]
 }
