@@ -3,6 +3,18 @@
     {
       "id": 1,
       "attributes": {
+        "Title": "Stuff I Actually Use — 2026",
+        "date": "2026-10-03",
+        "articleId": "77f58cdc-340b-467b-98c2-e3b584b20bfd",
+        "Content": "Not necessarily the best thing in every category. Just stuff I own, actually use, and would bother mentioning.\n\n## Desk / Work Setup\n\n- [Dell S2725QC — 27-inch 4K 120Hz USB-C Monitor](https://www.amazon.in/dp/B0F29RSLHP?th=1)  \n  My main external monitor. 4K, 120Hz, USB-C, built-in speakers, and a properly adjustable stand.\n- [MacBook Pro M4 Pro](https://www.apple.com/in/macbook-pro/)  \n  Technically my office laptop, so I didn't buy this one. Still: GOAT-tier work machine and absolutely part of the setup.\n- [IKEA SKÅDIS Pegboard](https://www.ikea.com/in/en/p/skadis-pegboard-white-80320804/)  \n  Used as the organizer around my desk instead of having random stuff scattered everywhere.\n- Custom 3D-printed SKÅDIS headphone mount  \n  I was going to buy a headphone mount from Amazon, realized I could just have one printed for less, and got it made through [Dr.PrinT](https://drprint.in/). Very helpful guy, and the whole thing ended up cheaper than buying the mount I was looking at on Amazon.\n\n## Audio\n\n- [Sennheiser Momentum 4 Wireless Special Edition — Black/Copper](https://www.amazon.in/dp/B0CCRZPKR1?th=1)  \n  Just to lock in every once in a while. Albeit I feel sad missing out on the Momentum 5.\n- [Shokz OpenRun Pro 2](https://shokz.com/products/openrunpro2)  \n  Great for road running, decent battery but not for audiophiles.\n\n## Running / Cycling / Fitness\n\n- [Garmin Forerunner 255 Music](https://www.amazon.in/dp/B0B4K8VB1D)  \n  Still my main sports watch. GPS, running metrics, cycling support, music and enough battery life that I don't have to think about charging it constantly unlike my Apple Watch for which I have changed three straps in < 2 years. Spigen's straps left a lot to be desired.\n- [Polar H9 Heart Rate Sensor](https://www.polar.com/in-en/sensors/h9-heart-rate-sensor)  \n  Great for splits and training on the cycle trainer.\n- [Zitel Protective Case for Garmin Forerunner 255 / 255 Music](https://www.amazon.in/dp/B0BRJHNQCF)  \n  A must when you are dealing with a somewhat accident prone person like myself. Can skip.\n- [Sportneer Magnetic Bike Trainer](https://www.amazon.in/s?k=Sportneer+Magnetic+Bike+Trainer)  \n  Dumb trainer in the best possible sense: put the bike on it, turn the resistance up and suffer. No subscriptions, no software stack and no pretending an indoor ride needs to be a SaaS product.\n- [Van Rysel Long-Distance Triathlon Handlebar Extensions](https://www.decathlon.in/search?Ntt=Van%20Rysel%20aerobar)  \n  Clip-on aero bars for my Giant Contend. Great for getting low, cutting through the wind and generally speeding around on my roadie.\n\n## Clothing / Running Gear\n\n- [ASICS Gel-Kayano](https://www.asics.co.in/collection/normal-cushioning-shoe/gel-kayano.html?page=1)  \n  Deserves its share of glazing. I'm an overpronator, and this stability running shoe has carried me through 500 km so far with very little hassle.\n- [Uniqlo DRY-EX T-Shirt](https://www.uniqlo.com/in/en/products/E483970-000/00)  \n  These deserve unreasonable amounts of glazing. They feel lighter than air, don't become a miserable wet rag halfway through a run, and are one of the few running shirts I actively notice because of how little I notice wearing them.\n\n## Gaming\n\n- [Sony PlayStation 5 Slim — Disc Edition, 1TB](https://www.amazon.in/dp/B0CY5HVDS2?th=1)  \n  The current PS5 Slim chassis with the disc drive. Probably the largest pure-entertainment purchase on this list. Got the last one before the price bump. Do I need it? Not really but excited to play GTA VI, so practicality be damned.\n- [OIVO Dust Cover for PS5 Slim](https://www.amazon.in/dp/B0FL1Y5G3K)  \n  A fitted dust cover compatible with both the Slim Disc and Digital models. A profoundly boring accessory that solves an equally boring problem but considering the amount of dust due to construction it became a must.",
+        "slug": "stuff-i-actually-use-2026",
+        "sourcePath": "content/2026-10-03-stuff-i-actually-use-2026.md",
+        "description": "Not necessarily the best thing in every category. Just stuff I own, actually use, and would bother mentioning."
+      }
+    },
+    {
+      "id": 2,
+      "attributes": {
         "Title": "I Ran a Personal Blog on AWS. I Deserve What Happened.",
         "date": "2026-06-27",
         "articleId": "c5818523-6d19-4674-8dd0-78fe719a6d3b",
@@ -12,7 +24,7 @@
       }
     },
     {
-      "id": 2,
+      "id": 3,
       "attributes": {
         "Title": "I Built an MCP Server So Claude Could Manage My Blog — Here's What Actually Happened",
         "date": "2026-06-21",
@@ -23,7 +35,7 @@
       }
     },
     {
-      "id": 3,
+      "id": 4,
       "attributes": {
         "Title": "Building a Scalable Music Recommendation System with AutoGen: A Real-World Implementation",
         "date": "2025-02-22",
@@ -34,7 +46,7 @@
       }
     },
     {
-      "id": 4,
+      "id": 5,
       "attributes": {
         "Title": "Step-by-Step: Building My Blog with JAMStack and Google Cloud",
         "date": "2023-08-31",
@@ -45,7 +57,7 @@
       }
     },
     {
-      "id": 5,
+      "id": 6,
       "attributes": {
         "Title": "Jovian Generative AI Hackathon June 2023",
         "date": "2023-08-02",
@@ -56,7 +68,7 @@
       }
     },
     {
-      "id": 6,
+      "id": 7,
       "attributes": {
         "Title": "Streaming using Flask and React",
         "date": "2023-06-30",
@@ -67,7 +79,7 @@
       }
     },
     {
-      "id": 7,
+      "id": 8,
       "attributes": {
         "Title": "Is ChatGPT really destroying Chegg's fortunes?",
         "date": "2023-05-04",
@@ -78,7 +90,7 @@
       }
     },
     {
-      "id": 8,
+      "id": 9,
       "attributes": {
         "Title": "Thoughts on Evil Dead Rise (2023)",
         "date": "2023-03-30",
@@ -89,7 +101,7 @@
       }
     },
     {
-      "id": 9,
+      "id": 10,
       "attributes": {
         "Title": "Preparing for the Google Cloud Professional Developer Exam",
         "date": "2022-05-04",
@@ -100,7 +112,7 @@
       }
     },
     {
-      "id": 10,
+      "id": 11,
       "attributes": {
         "Title": "An Introduction To MVCS Architecture",
         "date": "2021-04-20",
@@ -111,7 +123,7 @@
       }
     },
     {
-      "id": 11,
+      "id": 12,
       "attributes": {
         "Title": "Manipal – Shaping My Life for Good!",
         "date": "2018-05-29",
@@ -122,7 +134,7 @@
       }
     },
     {
-      "id": 12,
+      "id": 13,
       "attributes": {
         "Title": "What villain actually had a point?",
         "date": "2018-04-01",
