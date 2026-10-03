@@ -1,10 +1,11 @@
 ---
-title: I Built an MCP Server So Claude Could Manage My Blog — Here's What Actually
-  Happened
+title: I Built an MCP Server So Claude Could Manage My Blog
 date: '2026-06-21'
 articleId: 254e12f5-ed43-4895-a9a2-42b8622376c8
 slug: i-built-an-mcp-server-so-claude-could-manage-my-blog-heres-what-actually-happened
 ---
+
+> **Update (2026-10-03):** this post describes the setup as of 21 June. Since then Strapi has been removed ([the story](/article/2026-06-27/i-ran-a-personal-blog-on-aws-i-deserve-what-happened/)), the server has grown from 8 tools to 17, and it now requires OAuth. The auth advice below was wrong. Corrections are marked "Edit" inline and summarised under EDITS at the end. The current setup is in [Part 2](/article/2026-10-03/my-blogs-mcp-server-finally-got-a-lock-part-2/).
 
 I run a personal blog backed by Strapi CMS. It works fine. But every time I want to draft a post, I have to open the Strapi admin panel, find the content type, fill in the fields, remember to set the `articleId`, and then either save it as a draft or immediately publish it. It's maybe three minutes of work. I did it enough times that I started thinking: what if I could just ask Claude to do it for me?
 
@@ -12,7 +13,7 @@ That thought turned into a two-week yak shave involving Lambda Web Adapter, DNS 
 
 ---
 
-## The Goal
+## What I Wanted Claude to Do
 
 I wanted Claude to be able to:
 
@@ -40,7 +41,9 @@ import strapi
 
 mcp = FastMCP(
     "blog",
-    transport_security=TransportSecuritySettings(enable_dns_rebinding_protection=False),
+    transport_security=TransportSecuritySettings(
+        enable_dns_rebinding_protection=False
+    ),
     streamable_http_path="/",
 )
 
@@ -61,19 +64,25 @@ async def list_posts() -> list:
     ]
 ```
 
-**Edit (2026-10-03):** look closely at that `FastMCP(...)` call. There's no `auth=` and no `token_verifier=`, which means this server had **no authentication at all**. See [EDITS](#edits) at the end of this post, and [Part 2](/article/2026-10-03/my-blogs-mcp-server-finally-got-a-lock-part-2/) for the fix.
+**Edit (2026-10-03):** look closely at that `FastMCP(...)` call. There's no `auth=` and no `token_verifier=`, which means this server had **no authentication at all**. See EDITS at the end of this post, and [Part 2](/article/2026-10-03/my-blogs-mcp-server-finally-got-a-lock-part-2/) for the fix.
 
 The Strapi client is a thin wrapper around `httpx` that reads `STRAPI_BASE_URL` and `STRAPI_API_TOKEN` from environment variables:
 
 ```python
-async def get(path: str, params: dict = {}) -> dict:
+async def get(path: str, params: dict | None = None) -> dict:
     async with httpx.AsyncClient() as c:
-        r = await c.get(f"{_base()}{path}", headers=_headers(), params=params)
+        r = await c.get(
+            f"{_base()}{path}",
+            headers=_headers(),
+            params=params or {},
+        )
         r.raise_for_status()
         return r.json()
 ```
 
-Seven tools total: `list_posts`, `list_drafts`, `get_post`, `create_draft`, `update_post`, `publish_post`, `delete_post`. Each one maps directly to a Strapi REST call. Nothing clever.
+**Edit (2026-10-03):** the original signature was `params: dict = {}`, a mutable default argument. It's shared between calls, which is a classic Python trap. It's now `dict | None = None`.
+
+~~Seven tools total: `list_posts`, `list_drafts`, `get_post`, `create_draft`, `update_post`, `publish_post`, `delete_post`.~~ **Edit (2026-10-03): eight tools total:** `list_posts`, `list_drafts`, `get_post`, `create_draft`, `update_post`, `publish_post`, `unpublish_post`, `delete_post`. The original list left out `unpublish_post`, even though the server had it and the post says unpublishing works. Each one maps directly to a Strapi REST call. Nothing clever.
 
 The only mildly interesting part is `update_post` — it only sends fields you actually pass, so partial updates work without overwriting things you didn't touch:
 
@@ -81,9 +90,11 @@ The only mildly interesting part is `update_post` — it only sends fields you a
 updates = {
     k: v
     for k, v in {"Title": title, "Content": content, "date": date}.items()
-    if v
+    if v is not None
 }
 ```
+
+**Edit (2026-10-03):** this originally filtered with `if v`, which silently drops every falsy value, so you couldn't set a field to an empty string. Defaulting the arguments to `None` and filtering with `is not None` fixes that.
 
 ---
 
@@ -96,6 +107,8 @@ uvicorn main:_app --host 0.0.0.0 --port 8000
 ```
 
 But I wanted it deployed somewhere persistent so Claude Code could connect to it without me having a terminal open. And since my Strapi instance is already on AWS (ECS Fargate behind an ALB), I figured I'd keep everything in one place.
+
+**Edit (2026-10-03):** that Strapi setup is gone. See the update note at the top.
 
 I had two options: another ECS service, or Lambda. Lambda is cheaper for a server that gets used a few times a day, so I went with Lambda.
 
@@ -133,7 +146,7 @@ The Dockerfile is almost embarrassingly simple:
 ```dockerfile
 FROM public.ecr.aws/docker/library/python:3.12-slim
 
-COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:1.0.1 \
+COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:1.1.0 \
     /lambda-adapter /opt/extensions/lambda-adapter
 
 ENV PORT=8080
@@ -146,11 +159,15 @@ COPY main.py strapi.py ./
 CMD ["uvicorn", "main:_app", "--host", "0.0.0.0", "--port", "8080"]
 ```
 
+**Edit (2026-10-03):** I originally pinned `:1.0.1`. The adapter's README now shows the same pattern with `:1.1.0`, so that's what's above. My own deployment still builds with `1.0.1`.
+
 The `COPY --from` line pulls the LWA binary out of the official ECR image and puts it at `/opt/extensions/lambda-adapter`. Lambda automatically runs anything in `/opt/extensions/` as an extension before invoking your handler. LWA starts your CMD, waits for the port to be ready, and then starts proxying.
 
-One thing that bit me: I initially tried using `public.ecr.aws/awsguru/aws-lambda-adapter:0.8.4` because that's what a lot of blog posts reference. The correct image for the binary-copy pattern is the `1.x` release line. The older tags don't have the binary at the expected path.
+~~One thing that bit me: I initially tried using `public.ecr.aws/awsguru/aws-lambda-adapter:0.8.4` because that's what a lot of blog posts reference. The correct image for the binary-copy pattern is the `1.x` release line. The older tags don't have the binary at the expected path.~~
 
-Another thing: I tried an Amazon Linux 2 base image first because it's the "native" Lambda environment. LWA doesn't care what base image you use — it's a static binary — but `python:3.12-slim` (Debian) is smaller and gives you a normal pip install experience without fighting Amazon's package repos.
+**Edit (2026-10-03), replacement:** the struck-through claim was wrong. I checked the published `0.8.4` image, and its single layer contains `/lambda-adapter`, the same layout as `1.0.1` and `1.1.0`. What really bit me was one step earlier. I tried downloading the `v0.8.4` release artifacts from GitHub inside the Dockerfile, picked the wrong file, fixed the extraction, and only then switched to the `COPY --from` pattern with the ECR image. The pattern is what fixed it, not the version number.
+
+Another thing: I tried Amazon's own Lambda Python base image (`public.ecr.aws/lambda/python:3.12`) first because it's the "native" Lambda environment. LWA doesn't care what base image you use — it's a static binary — but `python:3.12-slim` (Debian) is smaller and gives you a normal pip install experience without fighting Amazon's package repos.
 
 ---
 
@@ -194,7 +211,9 @@ The fix is one line:
 ```python
 mcp = FastMCP(
     "blog",
-    transport_security=TransportSecuritySettings(enable_dns_rebinding_protection=False),
+    transport_security=TransportSecuritySettings(
+        enable_dns_rebinding_protection=False
+    ),
     streamable_http_path="/",
 )
 ```
@@ -262,7 +281,7 @@ With the server deployed, connecting Claude Code is one config addition:
 }
 ```
 
-After that, Claude can see all seven tools and use them in conversation:
+After that, Claude can see all ~~seven~~ eight tools and use them in conversation:
 
 > "Draft a post about the Lambda Web Adapter, title it 'Why Mangum Didn't Work', leave the date as today, and save it as a draft."
 
@@ -272,7 +291,17 @@ It works. It actually works. The draft shows up in my Strapi admin panel with th
 
 ---
 
-## What I'd Do Differently
+## How It All Fit Together (June 2026)
+
+The Strapi CMS runs on ECS Fargate behind an ALB. The MCP server runs on Lambda, packaged as a container image, using Lambda Web Adapter to bridge the uvicorn HTTP server to the Lambda execution model. Terraform manages both, with state in S3. GitHub Actions deploys both on push to master.
+
+Total cost for the MCP server is roughly zero — it runs a few times a day and fits comfortably within Lambda's free tier. The main ongoing cost is the Fargate task running Strapi.
+
+**Edit (2026-10-03):** this section is a snapshot, and it's out of date. Strapi and its Fargate task were removed on 24 June. Posts are now Markdown files in a GitHub repo served as static JSON from Cloudflare Pages, and the MCP server talks to the GitHub Contents API, with no database behind it. See [the 27 June post](/article/2026-06-27/i-ran-a-personal-blog-on-aws-i-deserve-what-happened/) for why.
+
+---
+
+## Four Lessons From the Yak Shave
 
 **Start with Lambda Web Adapter, not Mangum.** If you're running any kind of streaming server on Lambda — MCP, SSE, WebSocket over HTTP — LWA is the right tool. Mangum is for request-response ASGI apps. The distinction matters and it's easy to miss.
 
@@ -286,31 +315,27 @@ It works. It actually works. The draft shows up in my Strapi admin panel with th
 
 ---
 
-## The Full Picture
-
-The Strapi CMS runs on ECS Fargate behind an ALB. The MCP server runs on Lambda, packaged as a container image, using Lambda Web Adapter to bridge the uvicorn HTTP server to the Lambda execution model. Terraform manages both, with state in S3. GitHub Actions deploys both on push to master.
-
-Total cost for the MCP server is roughly zero — it runs a few times a day and fits comfortably within Lambda's free tier. The main ongoing cost is the Fargate task running Strapi.
-
-Is it overkill for a personal blog? Yes, obviously. But "can Claude draft and publish my posts" is now a real capability I have, and the path from question to working system is fully documented for the next person who wants to build something like it.
-
----
-
 ## EDITS
 
-**BLUF:** The auth advice in this post was wrong, and the server it describes was unauthenticated. "FastMCP handles auth" is false: the MCP Python SDK has auth off by default, and my code configured none. The endpoint, including `update_post` and `delete_post`, was open to anyone with the Function URL. I fixed it on 2026-10-03 with Auth0 OAuth and an owner-only token check, and confirmed that an anonymous request now gets a `401`. The story of the fix is in [Part 2](/article/2026-10-03/my-blogs-mcp-server-finally-got-a-lock-part-2/).
+**BLUF:** The auth advice in this post was wrong, and the server it describes was unauthenticated. "FastMCP handles auth" is false: the MCP Python SDK has auth off by default, and my code configured none. The endpoint, including `update_post` and `delete_post`, was open to anyone with the Function URL. I fixed it on 2026-10-03 with Auth0 OAuth and an owner-only token check, and confirmed that an anonymous request now gets a `401`. The story of the fix is in [Part 2](/article/2026-10-03/my-blogs-mcp-server-finally-got-a-lock-part-2/). The same pass also corrected a wrong tool list, an unfounded Lambda Web Adapter claim, two code samples, and the stale Strapi architecture. Details below.
 
-**Changed in place** (each is marked "Edit (2026-10-03)" in the text above):
+**Wrong, and corrected in place** (each marked "Edit (2026-10-03)" in the text above):
 
-1. **The OAuth Gotchas section.** I struck through the paragraph claiming FastMCP handles auth internally and added a correction. The auth fix is `AuthSettings` plus a `TokenVerifier`. The real bug in my middleware was that it blocked the `/.well-known/` discovery paths, so it needed a route exemption, not removal.
-2. **"What I'd Do Differently".** I struck through "Don't write auth middleware" and replaced it with: don't hand-roll auth middleware, but do configure the SDK's auth, and test the unauthenticated request first.
-3. **The MCP Server code sample.** I added a note that the `FastMCP(...)` call has no `auth=` or `token_verifier=`.
-4. **The DNS rebinding fix.** I added a note that `enable_dns_rebinding_protection=False` is a workaround, and that allowing the specific host would be the tidier fix.
-5. **The Infrastructure section.** I added a note that `authorization_type = "NONE"` is only safe when the app verifies tokens, which mine didn't at the time, and that the Strapi environment variables shown there are the old ones.
-6. **Connecting Claude to It.** I added a note that "works without issues" meant "connects", not "secure", and that a bare URL config now gets a `401` until the client completes the OAuth sign-in.
+1. **Auth (the big one).** I struck through the paragraph claiming FastMCP handles auth internally and added a correction. The fix is `AuthSettings` plus a `TokenVerifier`. The real bug in my middleware was that it blocked the `/.well-known/` discovery paths, so it needed a route exemption, not removal.
+2. **Lessons.** I struck through "Don't write auth middleware" and replaced it with: don't hand-roll auth middleware, but do configure the SDK's auth, and test the unauthenticated request first.
+3. **Tool list.** It said seven tools and omitted `unpublish_post`, even though the post says unpublishing works. The server had eight tools, including `unpublish_post`. I've corrected the list and the count.
+4. **Lambda Web Adapter claim.** I struck through "the older tags don't have the binary at the expected path". I checked the published `0.8.4` image, and it has `/lambda-adapter` at the same path as `1.0.1` and `1.1.0`. What actually bit me was downloading the `v0.8.4` GitHub release artifacts, not the ECR image tag. I also bumped the pinned version in the sample Dockerfile from `1.0.1` to `1.1.0`, matching the adapter's README. My own deployment still builds with `1.0.1`.
+5. **Base image.** I said I'd tried "an Amazon Linux 2 base image". It was Amazon's Lambda Python base image, `public.ecr.aws/lambda/python:3.12`.
+6. **Code samples.** `params: dict = {}` (a mutable default argument) is now `params: dict | None = None`, and the `update_post` filter `if v` is now `if v is not None`, because `if v` silently dropped falsy values and so couldn't set a field to an empty string. I also wrapped the longest code lines so they don't clip in the reading column.
 
-**Out of date but left as written** (historical, so I didn't rewrite the story):
+**Flagged as out of date, with a note in place:**
 
-- **Strapi is gone.** I removed it on 2026-06-24. Posts are now Markdown files in a GitHub repo, and the MCP server talks to the GitHub Contents API. This makes the "main ongoing cost is the Fargate task running Strapi" line and the Strapi client code obsolete.
-- **Seven tools is now seventeen.** Posts, plus a set of seven note tools added on 2026-10-03.
-- **The server is also tested now.** The post says nothing about tests. There are 121 passing, with the denial cases (wrong user, wrong audience, expired token and so on) covered.
+7. **`FastMCP(...)` sample.** I added a note that it has no `auth=` or `token_verifier=`.
+8. **DNS rebinding.** I added a note that `enable_dns_rebinding_protection=False` is a workaround, and that allowing the specific host would be the tidier fix.
+9. **Terraform.** I added a note that `authorization_type = "NONE"` is only safe when the app verifies tokens, which mine didn't at the time, and that the Strapi environment variables shown are the old ones.
+10. **"Works without issues".** I added a note that this meant "connects", not "secure".
+11. **Strapi architecture.** Strapi on ECS Fargate behind an ALB was removed on 24 June (see [the 27 June post](/article/2026-06-27/i-ran-a-personal-blog-on-aws-i-deserve-what-happened/)). I added an update banner at the top and notes in the Deployment and "How It All Fit Together" sections. The server has also grown from eight tools to seventeen (the new ones are `rebuild_content`, `rebuild_blog` and a set of seven note tools; `unpublish_post` was already there), and it now has a test suite.
+
+**Trimmed:**
+
+12. **Title and ending.** I cut the "— Here's What Actually Happened" subtitle from the title, renamed three generic section headings (the goals section, "How It All Fit Together" and the lessons), and moved the architecture summary ahead of the lessons. I removed the closing paragraph that oversold the post, so it now ends on the last concrete lesson. The URL didn't change.
