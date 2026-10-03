@@ -5,6 +5,7 @@ on:
     branches: [main, master]
     paths:
       - 'content/**'
+      - 'notes/**'
       - 'scripts/**'
       - 'package.json'
   workflow_dispatch:
@@ -23,6 +24,10 @@ jobs:
           cache: 'npm'
 
       - run: npm ci
+
+      - run: git pull --rebase origin master
+
+      - run: npm test
 
       - run: npm run generate
 

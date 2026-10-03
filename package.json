@@ -5,7 +5,8 @@
   "scripts": {
     "generate": "node scripts/generate.js",
     "validate": "node scripts/validate.js",
-    "build": "node scripts/generate.js && node scripts/validate.js"
+    "build": "node scripts/generate.js && node scripts/validate.js",
+    "test": "node --test scripts/tests/*.test.js"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
