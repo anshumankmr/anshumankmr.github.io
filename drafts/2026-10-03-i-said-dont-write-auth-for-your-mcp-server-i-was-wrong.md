@@ -1,109 +1,97 @@
 ---
-title: I Said "Don't Write Auth for Your MCP Server." I Was Wrong.
+title: My Blog's MCP Server Finally Got a Lock (Part 2)
 date: '2026-10-03'
 articleId: 51ce3c8d-dd4c-4803-80d2-5b0190eb91c3
 slug: i-said-dont-write-auth-for-your-mcp-server-i-was-wrong
-description: 'A follow-up to my MCP blog server post: the "FastMCP handles auth" advice
-  was wrong, the endpoint was wide open, and here''s the real fix with Auth0.'
+description: 'Part 2 of the blog-MCP saga: someone pointed out my server had no auth,
+  so in one day I added Auth0 OAuth, tests, a deploy fix, and notes, then checked
+  that the lock actually works.'
 ---
 
-A few months ago I wrote [I Built an MCP Server So Claude Could Manage My Blog](/blog/i-built-an-mcp-server-so-claude-could-manage-my-blog-heres-what-actually-happened). Someone went through it with a fine-toothed comb and found a problem. Not a typo. A "the headline advice is wrong and the thing you built is unprotected" problem.
+This is the sequel to [I Built an MCP Server So Claude Could Manage My Blog](/blog/i-built-an-mcp-server-so-claude-could-manage-my-blog-heres-what-actually-happened). That post got reviewed, and the review had a headline finding: I'd told everyone not to bother with auth because "FastMCP handles it", and FastMCP, it turns out, handles it only if you ask.
 
-They were right, so this is the sequel where I fix it.
+So today I fixed it. This is how the day went, including the parts that were annoying.
 
 ---
 
-## What I said
+## The problem, in one paragraph
 
-In the original post I wrote this:
+The original server had no auth provider and no token verifier. The Lambda Function URL is `authorization_type = "NONE"`, and the server exposes `update_post` and `delete_post`. As written, anyone with the URL could edit or delete my posts. The URL is a long random string, but that's obscurity, not a lock. (The correction, with a diff of what I changed, is at the bottom of the original post under **EDITS**.)
 
-> The Lambda Function URL is public (`authorization_type = "NONE"`) and I rely on a token check FastMCP handles internally.
+## The plan: be a resource server, not a login system
 
-And in the "what I'd do differently" section:
+I don't want to run a login system. Auth0 can own login and token issuance, and my server just has to answer one question per request: *is this token legit, and is it me?*
 
-> Don't write auth middleware for MCP servers. FastMCP handles the OAuth discovery protocol for you.
-
-Read those two next to the code I actually shipped:
+That's the whole design. FastMCP gets an `AuthSettings` and a `TokenVerifier`:
 
 ```python
 mcp = FastMCP(
     "blog",
-    transport_security=TransportSecuritySettings(enable_dns_rebinding_protection=False),
-    streamable_http_path="/",
-)
-```
-
-No auth provider. No token verifier. Nothing. The MCP Python SDK ships with authentication **off by default**. You turn it on by handing FastMCP an `AuthSettings` and a `TokenVerifier`. I did neither. There was no "token check FastMCP handles internally" because there was no token check.
-
-So for a good while, anyone who found the Function URL could call `update_post` and `delete_post` on my blog. The URL is a long random string, which is obscurity, not authentication. I'd like to say I'd have caught it eventually. I did not catch it. A reviewer did.
-
-## How I talked myself into it
-
-The history is almost funny. I'd written a bearer-token middleware, and it broke the OAuth discovery handshake because it also blocked `/.well-known/*`. The MCP client couldn't find out how to authenticate, so it gave up.
-
-The real bug was "my middleware doesn't exempt the discovery routes." The conclusion I drew was "auth middleware is bad, the framework must handle it." I ripped the middleware out, the client connected, everything went green, and I wrote a confident blog post about it.
-
-Lesson: "it connects now" and "it's secure" are different test results. I only ran the first one.
-
-## The actual fix
-
-The MCP server should be an OAuth *resource server*. It doesn't log anyone in or mint tokens. Auth0 does that. The server's only job is to look at a bearer token and decide yes or no.
-
-The FastMCP side is small:
-
-```python
-mcp = FastMCP(
-    "blog",
-    auth=auth_config.settings(),
-    token_verifier=OwnerTokenVerifier(auth_config),
-    streamable_http_path="/",
+    auth=_auth_config.settings() if _auth_config else None,
+    token_verifier=OwnerTokenVerifier(_auth_config) if _auth_config else None,
+    streamable_http_path=MCP_PATH,
     stateless_http=True,
     json_response=True,
 )
 ```
 
-with settings like:
+Once you hand it those, the SDK serves the OAuth discovery metadata and returns proper `401` challenges on its own. That is the part of "FastMCP handles it" that was true. I just hadn't turned it on.
 
-```python
-AuthSettings(
-    issuer_url=AnyHttpUrl(issuer),
-    resource_server_url=AnyHttpUrl(resource),
-    required_scopes=["blog:manage"],
-    validate_token_resource=True,
-)
-```
+## Setting up Auth0 without leaving the terminal
 
-Once those are set, the SDK serves the discovery metadata and returns proper `401` challenges by itself. *That* is the part of "FastMCP handles it" that's true. It only happens if you configure it.
+Auth0 ships an MCP server of its own, so I let Claude set up the Auth0 side through it. It created three separate applications, one per client I want to use:
 
-### The verifier is where it matters
+| Client | Type |
+| --- | --- |
+| Local Codex | Native/public, PKCE, no secret |
+| ChatGPT | Regular web app, PKCE + refresh tokens |
+| Claude | Regular web app, PKCE + refresh tokens |
 
-`OwnerTokenVerifier` is a few dozen lines. It accepts a token only if all of these hold:
+Separate apps mean I can revoke one client without logging the others out. Each gets exact callback URLs, never wildcards.
 
-- It's signed RS256, with a key from my Auth0 tenant's JWKS (fetched async, cached, never from a URL the token supplies)
-- `iss` is my tenant, `aud` is this server's URL, and it hasn't expired
-- It carries the `blog:manage` scope
-- **`sub` is exactly my user ID**
+Not everything could be done that way. The Auth0 MCP's default permissions covered clients but not APIs, and it has no tools for users, connections or tenant settings at all. So a few things were dashboard work for me, and the handoff note I wrote for the next session lists them as "not done" rather than pretending:
 
-That last one is the one I'd have skipped if I'd been rushing. A valid token from my tenant isn't enough, because "valid Auth0 token" only means "someone Auth0 knows." I want "me." So I allowlist my one user ID, turned off sign-ups on the Auth0 connection, and created my user by hand. Not an email, not "whoever logs in first." The `sub`.
+- Create the API, with the identifier **exactly equal** to the server's public URL (trailing slash included), a `blog:manage` permission, a 900-second access token, and offline access on.
+- Create my user by hand and **disable sign-ups** on the database connection.
+- Turn on the **Resource Parameter Compatibility Profile**, or MCP clients' `resource` parameter won't match your API.
 
-If the OAuth env vars are missing, the server doesn't quietly run open. It serves a `503` on every route and exposes no tools. I'd rather be locked out than exposed.
+That handoff note was one of the more useful things from today. It has a table of what's been validated and what hasn't, and it keeps "76 tests passed" separate from "I actually logged in." Those are not the same claim, and mixing them up is how the original post happened.
 
-## The Function URL is still `NONE`
+## The verifier is the interesting bit
 
-Before anyone panics: yes, the Terraform still says this.
+`OwnerTokenVerifier` accepts a token only if it passes every one of these:
 
-```hcl
-resource "aws_lambda_function_url" "blog_mcp" {
-  function_name      = aws_lambda_function.blog_mcp.function_name
-  authorization_type = "NONE" # OAuth tokens and owner identity are verified in-app.
-}
-```
+- Signed RS256, with a key from my tenant's JWKS (fetched async, cached, with at most one refresh per 30s for an unknown key ID, and never from a URL the token supplies)
+- Correct `iss`, `aud` and `exp`, with the required claims present
+- Has the `blog:manage` scope
+- **`sub` equals my user ID, exactly**
 
-That's deliberate now. `AWS_IAM` auth on a Function URL wants SigV4-signed requests, and MCP clients don't do that. They speak OAuth. So AWS lets the request through and the app does the real check. The difference from before is that the app now actually *does* the check.
+The last one is the one I care about. A valid token from my tenant only proves Auth0 knows the person. I want it to be me. I allowlist the one immutable user ID, not an email address and not "whoever logs in first".
 
-## Proving it, this time
+And it fails closed. If the three OAuth env vars (`AUTH0_ISSUER_URL`, `MCP_PUBLIC_URL`, `MCP_ALLOWED_SUB`) are missing or malformed, the server doesn't quietly start open. It serves a `503` on every route and exposes no tools.
 
-I tested the bad path first. An anonymous request straight at the live Function URL:
+## Tests: the denial table
+
+I wrote the tests around ways to get in that should fail. They use generated RSA keys, a mocked JWKS and a mocked GitHub, so there are no real tokens and no live writes. They cover:
+
+- missing, malformed and forged tokens
+- expired, wrong-issuer and wrong-audience tokens
+- a valid token for a *different user*
+- insufficient scope, missing claims, and the wrong signing algorithm
+- an unknown signing key and a JWKS outage
+- missing configuration
+
+Every one of those must be rejected **before** anything reaches GitHub. The suite is at 121 passing now, and I'm honest about its limits: mocked tests don't prove real Auth0 provisioning, real login, token refresh or a web client's quirks.
+
+## A deploy gotcha: workflow-only changes don't deploy
+
+My deploy workflow triggers on pushes that touch `mcp/**`. I tweaked the workflow file itself (to accept the Auth0 settings from repository variables *or* secrets) and nothing happened, because `.github/workflows/` isn't under `mcp/`. The fix was one line, `workflow_dispatch`, so I can run it from the Actions tab. It's the kind of thing you only learn by staring at a pipeline that stubbornly does nothing.
+
+The workflow also refuses to touch AWS if the three OAuth values aren't set. Better a red build than an open server.
+
+## Checking it for real
+
+The test I should have run the first time: an anonymous request straight at the live Function URL.
 
 ```
 $ curl -i -X POST <function-url>/ \
@@ -117,32 +105,32 @@ www-authenticate: Bearer error="invalid_token",
   resource_metadata="<function-url>/.well-known/oauth-protected-resource"
 ```
 
-`/healthz` still returns 200 and the discovery document is still reachable, which is exactly what a client needs to get started. And the Claude connector, using its own OAuth client, completes the login and can list my posts. Same server, same tools, now with a bouncer.
+`/healthz` is still a public 200, and the discovery document is public too, which is what a client needs to start the OAuth dance. The Claude connector goes through the full sign-in and can list my posts.
 
-The automated tests use generated RSA keys and a mocked JWKS, and they cover denied requests, the wrong audience, the wrong `sub`, and every tool. They do **not** prove real Auth0 provisioning or real refresh behaviour, which is why I also did the live login by hand.
+The Function URL is still `NONE` in Terraform, on purpose. `AWS_IAM` needs SigV4-signed requests and MCP clients don't send those. The difference now is that the app does the checking.
 
-## Auth0 gotchas that cost me time
+## While I was in there: notes
 
-- **The API identifier must equal your public URL exactly**, trailing slash included. A mismatch gets you an `audience` error that tells you nothing useful.
-- **Turn on Resource Parameter Compatibility Profile** (Settings > Advanced) or MCP clients' `resource` parameter won't line up with your API.
-- **Keep the access token short.** I set 900 seconds and enabled offline access, so clients refresh instead of holding long-lived tokens.
-- **One Auth0 application per client**, each with its exact callback URL. No wildcards.
-- **Check refresh actually works.** A successful first login proves nothing about the second one an hour later.
+With auth in place I added the thing I'd been wanting: **notes**, short untitled posts that don't need a title or a draft-polish cycle. Six new tools take the server from 10 to 17:
 
-## While I'm correcting things
+`list_notes`, `get_note`, `create_note`, `update_note`, `publish_note`, `unpublish_note`, `delete_note`
 
-Since I'm already eating crow, a few other bits of the original have aged:
+Notes are Markdown files with a `noteId`, a timezone-aware timestamp and a slug like `2026-10-03-1630-<first-8-uuid-chars>`. The UUID suffix stops two notes in the same minute from colliding, and editing a note keeps its original slug even if you change the time. `create_note` saves a draft by default, and `draft=false` publishes straight away. They go through the same owner-only auth, so none of the security settings changed.
 
-- **Strapi is gone.** I removed it three days after that post. Posts are now Markdown files in a GitHub repo, and the MCP server talks to the GitHub Contents API. The "mostly free except the Fargate task" line is simply no longer true.
-- **Seven tools became seventeen.** Posts, plus a separate set for short untitled notes.
-- **DNS rebinding protection is still off.** It was a one-line fix to get past a `Host` header mismatch behind the Function URL, and I presented it as the answer. The tidier fix is to allow that specific host instead of switching the check off. Now that every request needs a token it matters much less, but it's still a shortcut.
+## Pinning the endpoint to `/`
 
-## What I'd actually say now
+One more tidy-up. The MCP endpoint lives at the Function URL root, and now there's a test that says so: `/mcp`, `/sse`, `/notes` and friends return a plain `404`, with no redirect. Posts and notes share one endpoint and one catalog. `MCP_PUBLIC_URL` is accepted with or without the trailing slash, and both forms identify the same endpoint.
 
-**Don't hand-roll auth middleware, but do configure the SDK's auth.** The two are different, and my original advice blurred them. A `TokenVerifier` plus `AuthSettings` is the whole thing. If your handshake breaks, the answer is to fix the config, not to delete the protection.
+It sounds trivial, but when the audience in your tokens has to match your URL exactly, "which URL is the canonical one" is a security question and not just a style choice.
 
-**If your MCP server can write or delete anything, test the unauthenticated request first.** One `curl` with no token. If it doesn't get a 401, you're not done.
+## What I'd tell past me
 
-**Verify security claims before you write them down.** I wrote "FastMCP handles internally" about code I hadn't read. The docs say authentication is off by default. I just didn't look.
+**Test the bad request first.** One `curl` with no token takes ten seconds. If it doesn't come back `401`, stop.
 
-Thanks to whoever pushed on this. It's a better server now, and a more honest blog post.
+**"It connects" is not "it's secure".** I had the first and wrote up the second.
+
+**Write down what you haven't verified.** A mocked test suite and a real login prove different things. Keep them in different columns.
+
+**Check who, not just whether.** A valid token means someone Auth0 knows. Compare the `sub`.
+
+Things are in better shape than they were this morning. Next up is making sure the ChatGPT and Codex logins work as well as the Claude one does.
