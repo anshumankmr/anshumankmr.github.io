@@ -8,9 +8,7 @@ description: 'Part 2 of the blog-MCP saga: someone pointed out my server had no 
   that the lock actually works.'
 ---
 
-This is the sequel to [I Built an MCP Server So Claude Could Manage My Blog](/article/2026-06-21/i-built-an-mcp-server-so-claude-could-manage-my-blog-heres-what-actually-happened/). That post got reviewed, and the review had a headline finding: I'd told everyone not to bother with auth because "FastMCP handles it", and FastMCP, it turns out, handles it only if you ask.
-
-So today I fixed it. This is how the day went, including the parts that were annoying.
+This is the sequel to [I Built an MCP Server So Claude Could Manage My Blog](/article/2026-06-21/i-built-an-mcp-server-so-claude-could-manage-my-blog-heres-what-actually-happened/).
 
 ---
 
