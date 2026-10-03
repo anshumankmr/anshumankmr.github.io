@@ -20,3 +20,7 @@ So I cut it. Strapi is gone — the posts live as markdown files fetched from a 
 The blog is the same. The infrastructure bill is zero.
 
 Google still hasn't refunded the ₹7,000. At this point I consider it the most expensive lesson in not normalizing complexity.
+
+---
+
+**Update (2026-10-03):** the MCP server I use to manage this blog was built back when Strapi was still around. [That post](/article/2026-06-21/i-built-an-mcp-server-so-claude-could-manage-my-blog-heres-what-actually-happened/) now carries corrections for everything that changed since, and [Part 2](/article/2026-10-03/my-blogs-mcp-server-finally-got-a-lock-part-2/) covers how I locked it down.
