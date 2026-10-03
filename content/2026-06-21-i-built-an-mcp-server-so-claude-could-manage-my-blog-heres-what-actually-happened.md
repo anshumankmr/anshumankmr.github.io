@@ -1,8 +1,9 @@
 ---
-title: "I Built an MCP Server So Claude Could Manage My Blog — Here's What Actually Happened"
-date: "2026-06-21"
-articleId: "254e12f5-ed43-4895-a9a2-42b8622376c8"
-slug: "i-built-an-mcp-server-so-claude-could-manage-my-blog-heres-what-actually-happened"
+title: I Built an MCP Server So Claude Could Manage My Blog — Here's What Actually
+  Happened
+date: '2026-06-21'
+articleId: 254e12f5-ed43-4895-a9a2-42b8622376c8
+slug: i-built-an-mcp-server-so-claude-could-manage-my-blog-heres-what-actually-happened
 ---
 
 I run a personal blog backed by Strapi CMS. It works fine. But every time I want to draft a post, I have to open the Strapi admin panel, find the content type, fill in the fields, remember to set the `articleId`, and then either save it as a draft or immediately publish it. It's maybe three minutes of work. I did it enough times that I started thinking: what if I could just ask Claude to do it for me?
@@ -59,6 +60,8 @@ async def list_posts() -> list:
         for d in data["data"]
     ]
 ```
+
+**Edit (2026-10-03):** look closely at that `FastMCP(...)` call. There's no `auth=` and no `token_verifier=`, which means this server had **no authentication at all**. See [EDITS](#edits) at the end of this post, and [Part 2](/article/2026-10-03/my-blogs-mcp-server-finally-got-a-lock-part-2/) for the fix.
 
 The Strapi client is a thin wrapper around `httpx` that reads `STRAPI_BASE_URL` and `STRAPI_API_TOKEN` from environment variables:
 
@@ -172,7 +175,11 @@ class BearerAuthMiddleware:
 
 The problem: this blocked the `/.well-known/` paths too. The MCP client never got the discovery response, never knew what token to send, and gave up before even trying to authenticate.
 
-FastMCP actually handles OAuth resource metadata automatically — it serves `/.well-known/oauth-protected-resource` itself. I didn't need my own middleware at all. I removed it and let FastMCP handle auth concerns. The Lambda Function URL is public (`authorization_type = "NONE"`) and I rely on a token check FastMCP handles internally.
+~~FastMCP actually handles OAuth resource metadata automatically — it serves `/.well-known/oauth-protected-resource` itself. I didn't need my own middleware at all. I removed it and let FastMCP handle auth concerns. The Lambda Function URL is public (`authorization_type = "NONE"`) and I rely on a token check FastMCP handles internally.~~
+
+**Edit (2026-10-03): the struck-through paragraph above was wrong, and it matters.** FastMCP serves OAuth metadata and rejects unauthenticated requests *only if you configure auth*, by passing `auth=AuthSettings(...)` and a `token_verifier=`. The MCP Python SDK has authentication **off by default**. My code configured neither, so there was no "token check FastMCP handles internally". Once the broken middleware was gone and the client connected, I assumed the framework was doing the protecting. It wasn't. With the Function URL set to `authorization_type = "NONE"`, the endpoint (including `update_post` and `delete_post`) was open to anyone who had the URL.
+
+What the middleware actually got wrong was not exempting the `/.well-known/` discovery paths. The right fix was to configure the SDK's auth, not to remove auth.
 
 ---
 
@@ -193,6 +200,8 @@ mcp = FastMCP(
 ```
 
 The `enable_dns_rebinding_protection=False` is the obvious part. The `streamable_http_path="/"` is less obvious: by default FastMCP mounts the MCP handler at `/mcp`. Lambda Web Adapter sometimes has issues with path routing when the app is mounted at a subpath. Serving at `/` removes that variable entirely.
+
+**Edit (2026-10-03):** that "one line" works by switching a protection off, so it's a workaround, not a fix. A tidier option is to allow the Function URL host instead of disabling the check. It's far less risky now that every request needs a valid token, but the check is still off.
 
 ---
 
@@ -224,6 +233,8 @@ resource "aws_lambda_function_url" "blog_mcp" {
 ```
 
 Lambda Function URL gives you a stable HTTPS endpoint without needing an API Gateway or ALB. For a low-traffic internal tool this is exactly the right call — it's free within the Lambda free tier and requires zero additional configuration.
+
+**Edit (2026-10-03):** `authorization_type = "NONE"` is only acceptable if the application verifies tokens itself, and at the time of writing mine didn't. It's still `NONE` today, deliberately: `AWS_IAM` expects SigV4-signed requests, which MCP clients don't send. The difference is that the app now validates an Auth0 access token on every request. The environment variables above are also the old Strapi ones.
 
 One Terraform issue I hit: I had manually created the ECR repository and CloudWatch log group early in the project before I had Terraform set up. Running `terraform apply` tried to create them again and failed with `ResourceAlreadyExists`. The fix is to import the existing resources into state before applying:
 
@@ -257,13 +268,17 @@ After that, Claude can see all seven tools and use them in conversation:
 
 It works. It actually works. The draft shows up in my Strapi admin panel with the content Claude wrote, correctly formatted, with the right date. Publishing and unpublishing also work. I've been using it for a few weeks now without issues.
 
+**Edit (2026-10-03):** "it works, without issues" meant "it connects", not "it's secure". Those are different claims. A config that's just a URL is also no longer enough: the server now answers `401` until the client completes an OAuth sign-in.
+
 ---
 
 ## What I'd Do Differently
 
 **Start with Lambda Web Adapter, not Mangum.** If you're running any kind of streaming server on Lambda — MCP, SSE, WebSocket over HTTP — LWA is the right tool. Mangum is for request-response ASGI apps. The distinction matters and it's easy to miss.
 
-**Don't write auth middleware for MCP servers.** FastMCP handles the OAuth discovery protocol for you. If you put your own middleware in front of it, you'll block the handshake. Let the framework do its job.
+~~**Don't write auth middleware for MCP servers.** FastMCP handles the OAuth discovery protocol for you. If you put your own middleware in front of it, you'll block the handshake. Let the framework do its job.~~
+
+**Edit (2026-10-03), replacement:** **Don't hand-roll auth middleware, but do configure the SDK's auth.** Pass FastMCP an `AuthSettings` and a `TokenVerifier`. The SDK then serves the discovery metadata and returns proper `401` challenges for you. Auth is off by default, so if your server can write or delete anything, make one request with no token before you call it done. If you don't get a `401`, you aren't done.
 
 **Use `streamable_http_path="/"`** when deploying behind a reverse proxy or LWA. Subpath mounting adds a routing variable you don't need.
 
@@ -278,3 +293,24 @@ The Strapi CMS runs on ECS Fargate behind an ALB. The MCP server runs on Lambda,
 Total cost for the MCP server is roughly zero — it runs a few times a day and fits comfortably within Lambda's free tier. The main ongoing cost is the Fargate task running Strapi.
 
 Is it overkill for a personal blog? Yes, obviously. But "can Claude draft and publish my posts" is now a real capability I have, and the path from question to working system is fully documented for the next person who wants to build something like it.
+
+---
+
+## EDITS
+
+**BLUF:** The auth advice in this post was wrong, and the server it describes was unauthenticated. "FastMCP handles auth" is false: the MCP Python SDK has auth off by default, and my code configured none. The endpoint, including `update_post` and `delete_post`, was open to anyone with the Function URL. I fixed it on 2026-10-03 with Auth0 OAuth and an owner-only token check, and confirmed that an anonymous request now gets a `401`. The story of the fix is in [Part 2](/article/2026-10-03/my-blogs-mcp-server-finally-got-a-lock-part-2/).
+
+**Changed in place** (each is marked "Edit (2026-10-03)" in the text above):
+
+1. **The OAuth Gotchas section.** I struck through the paragraph claiming FastMCP handles auth internally and added a correction. The auth fix is `AuthSettings` plus a `TokenVerifier`. The real bug in my middleware was that it blocked the `/.well-known/` discovery paths, so it needed a route exemption, not removal.
+2. **"What I'd Do Differently".** I struck through "Don't write auth middleware" and replaced it with: don't hand-roll auth middleware, but do configure the SDK's auth, and test the unauthenticated request first.
+3. **The MCP Server code sample.** I added a note that the `FastMCP(...)` call has no `auth=` or `token_verifier=`.
+4. **The DNS rebinding fix.** I added a note that `enable_dns_rebinding_protection=False` is a workaround, and that allowing the specific host would be the tidier fix.
+5. **The Infrastructure section.** I added a note that `authorization_type = "NONE"` is only safe when the app verifies tokens, which mine didn't at the time, and that the Strapi environment variables shown there are the old ones.
+6. **Connecting Claude to It.** I added a note that "works without issues" meant "connects", not "secure", and that a bare URL config now gets a `401` until the client completes the OAuth sign-in.
+
+**Out of date but left as written** (historical, so I didn't rewrite the story):
+
+- **Strapi is gone.** I removed it on 2026-06-24. Posts are now Markdown files in a GitHub repo, and the MCP server talks to the GitHub Contents API. This makes the "main ongoing cost is the Fargate task running Strapi" line and the Strapi client code obsolete.
+- **Seven tools is now seventeen.** Posts, plus a set of seven note tools added on 2026-10-03.
+- **The server is also tested now.** The post says nothing about tests. There are 121 passing, with the denial cases (wrong user, wrong audience, expired token and so on) covered.
