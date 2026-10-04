@@ -5,11 +5,11 @@ articleId: "f08cd404-fd2b-4009-b542-7b80ae5d40a0"
 slug: "is-chatgpt-really-destroying-cheggs-fortunes"
 ---
 
-I am sure we have all seen the news of Chegg's stock price plumetting just after announcing its previous quarter's results. ![](https://i.imgur.com/vP3va2g.png) 
+I am sure we have all seen the news of Chegg's stock price plumetting just after announcing its previous quarter's results. ![](https://anshumankmr.github.io/media/2ef781cf515a-vp3va2g.png) 
 
 Here's an example that I saw on my LinkedIn feed. However, there has been a decline in it's stock price for a far longer time than ChatGPT was released.**
 
-![](https://i.imgur.com/ZxRafYR.png) 
+![](https://anshumankmr.github.io/media/5213b3c1c0ec-zxrafyr.png) 
 
 For example, here's the stock price for the past few years whereas ChatGPT was initially released on November 30, 2022 (as per Google). 
 

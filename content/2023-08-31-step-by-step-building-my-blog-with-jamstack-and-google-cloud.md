@@ -13,7 +13,7 @@ I embarked on a journey to discover the ideal platform for my blog. My goal was 
 
 In this blog, I will explore the details of setting up the very site you're currently reading, [anshumankumar.dev](https://www.anshumankumar.dev/). Below is the solution architecture diagram:
 
-![Arch Diagram ](https://i.imgur.com/H3xWSX3.png)
+![Arch Diagram ](https://anshumankmr.github.io/media/c8d04d8824ab-h3xwsx3.png)
 
 I added the following code snippet to enable Scully to discover my Angular routes (located in src\assets\scully-routes.json):
 

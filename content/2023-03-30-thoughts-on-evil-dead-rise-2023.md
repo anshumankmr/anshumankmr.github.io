@@ -9,4 +9,4 @@ slug: "thoughts-on-evil-dead-rise-2023"
 
 The movie follows a family being tormented by Deadites, and the kills are absolutely brutal. There is focus on the family aspect which created an interesting dynamic in the movie for me, though the movie still prioritized jumpscares and other horror tropes.  But overall, I had a really good time, though I don't think is a horror movie that destined to be a classic (unlike movies like Hereditary or It (2019))
 
-![Poster](https://upload.wikimedia.org/wikipedia/en/9/98/EvilDeadRiseTeaser.jpg)
+![Poster](https://anshumankmr.github.io/media/d3cbd1c8fcea-evildeadriseteaser.jpg)
