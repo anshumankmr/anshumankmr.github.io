@@ -1,0 +1,1480 @@
+{
+  "capturedOn": "2026-10-04",
+  "sourceRepository": "https://github.com/anshumankmr/myblog",
+  "cmsFeed": "https://anshumankmr.github.io/generated/content.json",
+  "cmsSnapshotSha256": "0485a6ce63afab7a010776677c0d4cfed23753966ef23500acba85515e162499",
+  "cmsMatchesLocalGeneratedFeed": true,
+  "browser": "Chrome/154.0.8037.97",
+  "captureMethod": "Headless Chrome, isolated browser context per capture, full-page PNG, deviceScaleFactor 1",
+  "builds": [
+    {
+      "commit": "811a73b",
+      "framework": "angular13",
+      "localSourcePatches": [],
+      "prerenderer": "Scully 2.1.29",
+      "prerendered": true,
+      "compatibilityNotes": [
+        "Shared Angular 13 dependency set from af2bfff.",
+        "Current Chrome executable configured; obsolete single-process launch flags removed.",
+        "Scully --disableProjectFolderCheck used for shared dependencies."
+      ],
+      "title": "First successful Angular / Scully build",
+      "slug": "2022-01-10-angular-scully-first-build",
+      "routes": [
+        [
+          "home",
+          "/"
+        ]
+      ]
+    },
+    {
+      "commit": "ad8bb05",
+      "framework": "angular13",
+      "localSourcePatches": [],
+      "title": "First Angular Material build",
+      "slug": "2022-01-10-angular-material",
+      "routes": [
+        [
+          "home",
+          "/"
+        ]
+      ],
+      "compatibilityNotes": [
+        "Built with development configuration, source maps disabled, and a shared Angular 13 dependency set from af2bfff."
+      ]
+    },
+    {
+      "commit": "9b2e53e",
+      "framework": "angular13",
+      "localSourcePatches": [],
+      "title": "Header, footer, routing, and About component refactor",
+      "slug": "2022-01-21-angular-component-refactor",
+      "routes": [
+        [
+          "home",
+          "/"
+        ]
+      ],
+      "compatibilityNotes": [
+        "Built with development configuration, source maps disabled, and a shared Angular 13 dependency set from af2bfff."
+      ]
+    },
+    {
+      "commit": "4e8c5b2",
+      "framework": "angular13",
+      "localSourcePatches": [],
+      "title": "Gradient and CSS refinements",
+      "slug": "2023-01-14-angular-gradient-css",
+      "routes": [
+        [
+          "home",
+          "/"
+        ]
+      ],
+      "compatibilityNotes": [
+        "Built with development configuration, source maps disabled, and a shared Angular 13 dependency set from af2bfff."
+      ]
+    },
+    {
+      "commit": "af2bfff",
+      "framework": "angular13",
+      "localSourcePatches": [],
+      "title": "Complete CSS rewrite",
+      "slug": "2023-01-29-angular-css-rewrite",
+      "routes": [
+        [
+          "home",
+          "/"
+        ]
+      ],
+      "compatibilityNotes": [
+        "Built with development configuration, source maps disabled, and a shared Angular 13 dependency set from af2bfff."
+      ]
+    },
+    {
+      "commit": "4be3504",
+      "framework": "angular15",
+      "localSourcePatches": [],
+      "title": "Final Angular / Scully version with CMS and profile photo",
+      "slug": "2024-08-05-angular-cms-profile",
+      "routes": [
+        [
+          "home",
+          "/"
+        ],
+        [
+          "about",
+          "/aboutme"
+        ],
+        [
+          "blogs",
+          "/blogs"
+        ]
+      ],
+      "compatibilityNotes": [
+        "Built with development configuration, source maps disabled, and its Angular 15 lockfile."
+      ]
+    },
+    {
+      "commit": "ee5ea0c",
+      "framework": "gatsby",
+      "localSourcePatches": [
+        "blog/src/components/bio.js"
+      ],
+      "title": "Initial Gatsby rewrite",
+      "slug": "2024-08-11-gatsby-first-build",
+      "routes": [
+        [
+          "home",
+          "/"
+        ]
+      ],
+      "compatibilityNotes": [
+        "Node 18.20.8 and the installed Gatsby 5.13.5 dependency set were used.",
+        "AVIF generation disabled to avoid an old libvips / HEIF encoder crash; existing JPEG / WebP formats retained.",
+        "Inherited DEBUG environment variable removed to prevent invalid generated SSR JavaScript."
+      ]
+    },
+    {
+      "commit": "99b0540",
+      "framework": "gatsby",
+      "localSourcePatches": [
+        "blog/gatsby-node.js",
+        "blog/src/components/bio.js"
+      ],
+      "title": "Gatsby landing page, header, and contact rewrite",
+      "slug": "2024-12-28-gatsby-landing-header",
+      "routes": [
+        [
+          "home",
+          "/"
+        ],
+        [
+          "about",
+          "/about/"
+        ]
+      ],
+      "compatibilityNotes": [
+        "Node 18.20.8 and the installed Gatsby 5.13.5 dependency set were used.",
+        "AVIF generation disabled to avoid an old libvips / HEIF encoder crash; existing JPEG / WebP formats retained.",
+        "Inherited DEBUG environment variable removed to prevent invalid generated SSR JavaScript.",
+        "Retired Strapi URL redirected to a local copy of the verified current CMS legacy payload, filtered by post date.",
+        "Markdown onCreateNode slug hook restored so the retained starter RSS query can build.",
+        "Unavailable remote biography portrait replaced with the portrait tracked at blog/src/images/profile-pic.JPG."
+      ]
+    },
+    {
+      "commit": "daea808",
+      "framework": "gatsby",
+      "localSourcePatches": [
+        "blog/gatsby-node.js",
+        "blog/gatsby-config.js",
+        "blog/src/components/bio.js"
+      ],
+      "title": "Gatsby About layout and resume refactors",
+      "slug": "2025-02-05-gatsby-about-refactor",
+      "routes": [
+        [
+          "home",
+          "/"
+        ],
+        [
+          "about",
+          "/about/"
+        ]
+      ],
+      "compatibilityNotes": [
+        "Node 18.20.8 and the installed Gatsby 5.13.5 dependency set were used.",
+        "AVIF generation disabled to avoid an old libvips / HEIF encoder crash; existing JPEG / WebP formats retained.",
+        "Inherited DEBUG environment variable removed to prevent invalid generated SSR JavaScript.",
+        "Retired Strapi URL redirected to a local copy of the verified current CMS legacy payload, filtered by post date.",
+        "Markdown onCreateNode slug hook restored so the retained starter RSS query can build.",
+        "Unavailable remote biography portrait replaced with the portrait tracked at blog/src/images/profile-pic.JPG."
+      ]
+    },
+    {
+      "commit": "ce7cf3b",
+      "framework": "next",
+      "localSourcePatches": [
+        "blog/next-blog/lib/api.ts"
+      ],
+      "title": "Next.js 15 migration with dark mode",
+      "slug": "2026-01-21-nextjs-migration",
+      "routes": [
+        [
+          "home",
+          "/"
+        ],
+        [
+          "about",
+          "/about/"
+        ]
+      ],
+      "compatibilityNotes": [
+        "Installed Next.js 15.5.9 dependency set used for all Next.js milestones.",
+        "CMS reads redirected to the verified current legacy payload; posts filtered by commit date."
+      ]
+    },
+    {
+      "commit": "d9297ee",
+      "framework": "next",
+      "localSourcePatches": [
+        "blog/next-blog/lib/api.ts"
+      ],
+      "title": "Editorial design system and header refactor",
+      "slug": "2026-06-13-nextjs-editorial-design",
+      "routes": [
+        [
+          "home",
+          "/"
+        ],
+        [
+          "about",
+          "/about/"
+        ]
+      ],
+      "compatibilityNotes": [
+        "Installed Next.js 15.5.9 dependency set used for all Next.js milestones.",
+        "CMS reads redirected to the verified current legacy payload; posts filtered by commit date."
+      ]
+    },
+    {
+      "commit": "766c4c2",
+      "framework": "next",
+      "localSourcePatches": [
+        "blog/next-blog/lib/api.ts"
+      ],
+      "title": "Current Next.js version after content, notes, SEO, and identity refactors",
+      "slug": "2026-10-04-nextjs-current",
+      "routes": [
+        [
+          "home",
+          "/"
+        ],
+        [
+          "about",
+          "/about/"
+        ]
+      ],
+      "compatibilityNotes": [
+        "Installed Next.js 15.5.9 dependency set used for all Next.js milestones.",
+        "CMS reads redirected to the verified current legacy payload; posts filtered by commit date.",
+        "The normal scripts/fetch-content.mjs deployment step populated posts, notes, and activity before next build."
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "2022-01-10-angular-scully-first-build-home-desktop.png",
+      "commit": "811a73b9227c9e771066afdd89f33c368a8a2c86",
+      "date": "2022-01-10",
+      "title": "Blog",
+      "framework": "angular13",
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "My Blog\nAnshuman Kumar",
+      "finalPath": "/",
+      "fullPageHeight": 1000,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "e94f7a1e660f188391710b7fefdbb5865b48172a1cf0f4ba9409f613213ef533"
+    },
+    {
+      "file": "2022-01-10-angular-scully-first-build-home-mobile.png",
+      "commit": "811a73b9227c9e771066afdd89f33c368a8a2c86",
+      "date": "2022-01-10",
+      "title": "Blog",
+      "framework": "angular13",
+      "route": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "My Blog\nAnshuman Kumar",
+      "finalPath": "/",
+      "fullPageHeight": 844,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 390,
+        "height": 844
+      },
+      "sha256": "ec0a456a953c9bfc95fc0a87e519e8cfb1448a7f2e2543ca8967a15bf10aae12"
+    },
+    {
+      "file": "2022-01-10-angular-material-home-desktop.png",
+      "commit": "ad8bb05a5447b876494b708513bdf881cc04843e",
+      "date": "2022-01-10",
+      "title": "Blog",
+      "framework": "angular13",
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "My Blog\nAnshuman Kumar",
+      "finalPath": "/",
+      "fullPageHeight": 1029,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 1440,
+        "height": 1029
+      },
+      "sha256": "f2d72771438715e640f28c234af04895b904769b9d45ccaf0772c89089b5f461"
+    },
+    {
+      "file": "2022-01-10-angular-material-home-mobile.png",
+      "commit": "ad8bb05a5447b876494b708513bdf881cc04843e",
+      "date": "2022-01-10",
+      "title": "Blog",
+      "framework": "angular13",
+      "route": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "My Blog\nAnshuman Kumar",
+      "finalPath": "/",
+      "fullPageHeight": 852,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 390,
+        "height": 852
+      },
+      "sha256": "7e3834c63f3594f62cea8ea0f1a27b268f5660d8b13868c0c4e61f534355c6fa"
+    },
+    {
+      "file": "2022-01-21-angular-component-refactor-home-desktop.png",
+      "commit": "9b2e53e7418ccd0e15db16a29e1710d13d726dee",
+      "date": "2022-01-21",
+      "title": "Blog",
+      "framework": "angular13",
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Anshuman's Blog\nAbout Me\nMy Two Cents\nContact Me\n\nHi everyone my name is\n\nAnshuman Kumar\n\nI am a Software Engineer",
+      "finalPath": "/aboutme",
+      "fullPageHeight": 1128,
+      "dark": false,
+      "brokenImages": [
+        "https://storage.googleapis.com/www.anshumankumar.dev/assets/squarepic50.jpg"
+      ],
+      "substitutions": [],
+      "failedResources": [
+        "https://storage.googleapis.com/www.anshumankumar.dev/assets/squarepic50.jpg (net::ERR_BLOCKED_BY_ORB)"
+      ],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 1440,
+        "height": 1128
+      },
+      "sha256": "c87310b3345cbcbac3f35e5a9c7c5654aa0e0d7253cc5bc2a59ac26518bc199a"
+    },
+    {
+      "file": "2022-01-21-angular-component-refactor-home-mobile.png",
+      "commit": "9b2e53e7418ccd0e15db16a29e1710d13d726dee",
+      "date": "2022-01-21",
+      "title": "Blog",
+      "framework": "angular13",
+      "route": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Anshuman's Blog\nAbout Me\nMy Two Cents\nContact Me\n\nHi everyone my name is\n\nAnshuman Kumar\n\nI am a Software Engineer",
+      "finalPath": "/aboutme",
+      "fullPageHeight": 956,
+      "dark": false,
+      "brokenImages": [
+        "https://storage.googleapis.com/www.anshumankumar.dev/assets/squarepic50.jpg"
+      ],
+      "substitutions": [],
+      "failedResources": [
+        "https://storage.googleapis.com/www.anshumankumar.dev/assets/squarepic50.jpg (net::ERR_BLOCKED_BY_ORB)"
+      ],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 390,
+        "height": 956
+      },
+      "sha256": "925dd6f42e5c76df6e7c1b8dade56a23cafbd4c2e195e222c7cc2e25e3cb9c63"
+    },
+    {
+      "file": "2023-01-14-angular-gradient-css-home-desktop.png",
+      "commit": "4e8c5b23298d8d4d8e7544e0edf053722698dda5",
+      "date": "2023-01-14",
+      "title": "Blog",
+      "framework": "angular13",
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Anshuman's Blog\nAbout Me\nMy Two Cents\nContact Me\nWelcome to my Blog\nHi, I am Anshuman Kumar. I am Software Developer. My Passions Include Software Design, Cooking , Cycling\nMe somewhere near Natu La Pass\nA Picture I took Near Baba Ka Mandir near Natu La Pass. You can view the rest of my Pictures\nhere\nCSS Is Apparently a Thing\n\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqu",
+      "finalPath": "/aboutme",
+      "fullPageHeight": 1000,
+      "dark": false,
+      "brokenImages": [
+        "https://storage.googleapis.com/www.anshumankumar.dev/assets/20220811_125554.jpg"
+      ],
+      "substitutions": [],
+      "failedResources": [
+        "https://storage.googleapis.com/www.anshumankumar.dev/assets/20220811_125554.jpg (net::ERR_BLOCKED_BY_ORB)"
+      ],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "e11a71700b022fe588a14d5fff33eb8ab4a63ad9b26917550799d7b65418b70d"
+    },
+    {
+      "file": "2023-01-14-angular-gradient-css-home-mobile.png",
+      "commit": "4e8c5b23298d8d4d8e7544e0edf053722698dda5",
+      "date": "2023-01-14",
+      "title": "Blog",
+      "framework": "angular13",
+      "route": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Anshuman's Blog\nAbout Me\nMy Two Cents\nContact Me\nWelcome to my Blog\nHi, I am Anshuman Kumar. I am Software Developer. My Passions Include Software Design, Cooking , Cycling\nMe somewhere near Natu La Pass\nA Picture I took Near Baba Ka Mandir near Natu La Pass. You can view the rest of my Pictures\nhere\nCSS Is Apparently a Thing\n\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqu",
+      "finalPath": "/aboutme",
+      "fullPageHeight": 1920,
+      "dark": false,
+      "brokenImages": [
+        "https://storage.googleapis.com/www.anshumankumar.dev/assets/20220811_125554.jpg"
+      ],
+      "substitutions": [],
+      "failedResources": [
+        "https://storage.googleapis.com/www.anshumankumar.dev/assets/20220811_125554.jpg (net::ERR_BLOCKED_BY_ORB)"
+      ],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 390,
+        "height": 1920
+      },
+      "sha256": "592b2b2ce9d1777371ada3b5871b3b0e71a80a53ae8f52161ba1d8967390043a"
+    },
+    {
+      "file": "2023-01-29-angular-css-rewrite-home-desktop.png",
+      "commit": "af2bfff2e79a7a13de454a1aa516c61b921135a8",
+      "date": "2023-01-29",
+      "title": "Blog",
+      "framework": "angular13",
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Anshuman Kumar\nProjects\nAbout\nContact\nLinkedIn\nGithub\nResume\n\nHi, my name is\nAnshuman Kumar\n\nI am a tech enthusiast.\n\nI'm a developer specializing in HTML, CSS, user experience,Javascript, Python, React,Angular.\n\nCurrently, I'm working for Quantiphi as Software Developer.\n\nAnshuman Kumar · Developer\nLinkedIn\nGithub\nEmail\n© 2023 Anshuman Kumar. All rights reserved.",
+      "finalPath": "/aboutme",
+      "fullPageHeight": 1000,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "472042a2eabf4bcb89d6f7c6090f290abfa47afceac5574cf8eda657c8f58af8"
+    },
+    {
+      "file": "2023-01-29-angular-css-rewrite-home-mobile.png",
+      "commit": "af2bfff2e79a7a13de454a1aa516c61b921135a8",
+      "date": "2023-01-29",
+      "title": "Blog",
+      "framework": "angular13",
+      "route": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Anshuman Kumar\nProjects\nAbout\nContact\nLinkedIn\nGithub\nResume\n\nHi, my name is\nAnshuman Kumar\n\nI am a tech enthusiast.\n\nI'm a developer specializing in HTML, CSS, user experience,Javascript, Python, React,Angular.\n\nCurrently, I'm working for Quantiphi as Software Developer.\n\nAnshuman Kumar · Developer\nLinkedIn\nGithub\nEmail\n© 2023 Anshuman Kumar. All rights reserved.",
+      "finalPath": "/aboutme",
+      "fullPageHeight": 992,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 390,
+        "height": 992
+      },
+      "sha256": "081fc739967147e710af88de875977f47375e408523c6580412e7b2a4a8cb11d"
+    },
+    {
+      "file": "2024-08-05-angular-cms-profile-home-desktop.png",
+      "commit": "4be3504bed45b9a682482cb3000f93779d1a10f5",
+      "date": "2024-08-05",
+      "title": "Blog",
+      "framework": "angular15",
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Anshuman Kumar\nBlogs\nAbout\nContact\nLinkedIn\nGithub\nResume\n\n👋 Hi, my name is\nAnshuman Kumar\n\nI am a tech enthusiast.\n\nI am an AI Consultant based in Bangalore. I specialize in crafting intelligent chat and voice bots that engage users and provide valuable insights. My expertise lies in Google Cloud, Machine Learning, and creating seamless user experiences.\n\nAt Deloitte, I work on developing solutions using AI. My skill set includes NodeJS, Angula",
+      "finalPath": "/",
+      "fullPageHeight": 1788,
+      "dark": false,
+      "brokenImages": [
+        "https://storage.googleapis.com/www.anshumankumar.dev/assets/IMG_5144.JPG"
+      ],
+      "substitutions": [],
+      "failedResources": [
+        "https://api.websitecarbon.com/b",
+        "https://storage.googleapis.com/www.anshumankumar.dev/assets/IMG_5144.JPG (net::ERR_BLOCKED_BY_ORB)"
+      ],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 1440,
+        "height": 1788
+      },
+      "sha256": "e03ace613be7957805c79d14ad3fade604d844805c668fd66169fd02dca30919"
+    },
+    {
+      "file": "2024-08-05-angular-cms-profile-home-mobile.png",
+      "commit": "4be3504bed45b9a682482cb3000f93779d1a10f5",
+      "date": "2024-08-05",
+      "title": "Blog",
+      "framework": "angular15",
+      "route": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Anshuman Kumar\nBlogs\nAbout\nContact\nLinkedIn\nGithub\nResume\n\n👋 Hi, my name is\nAnshuman Kumar\n\nI am a tech enthusiast.\n\nI am an AI Consultant based in Bangalore. I specialize in crafting intelligent chat and voice bots that engage users and provide valuable insights. My expertise lies in Google Cloud, Machine Learning, and creating seamless user experiences.\n\nAt Deloitte, I work on developing solutions using AI. My skill set includes NodeJS, Angula",
+      "finalPath": "/",
+      "fullPageHeight": 1823,
+      "dark": false,
+      "brokenImages": [
+        "https://storage.googleapis.com/www.anshumankumar.dev/assets/IMG_5144.JPG"
+      ],
+      "substitutions": [],
+      "failedResources": [
+        "https://api.websitecarbon.com/b",
+        "https://storage.googleapis.com/www.anshumankumar.dev/assets/IMG_5144.JPG (net::ERR_BLOCKED_BY_ORB)"
+      ],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 390,
+        "height": 1823
+      },
+      "sha256": "a7653482009e7f5b9a27136a796024ebe109a831a62f9fbbd29afc4f78fb0be4"
+    },
+    {
+      "file": "2024-08-05-angular-cms-profile-about-desktop.png",
+      "commit": "4be3504bed45b9a682482cb3000f93779d1a10f5",
+      "date": "2024-08-05",
+      "title": "Blog",
+      "framework": "angular15",
+      "route": "/aboutme",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Anshuman Kumar\nBlogs\nAbout\nContact\nLinkedIn\nGithub\nResume\n\n👋 Hi, my name is\nAnshuman Kumar\n\nI am a tech enthusiast.\n\nI am an AI Consultant based in Bangalore. I specialize in crafting intelligent chat and voice bots that engage users and provide valuable insights. My expertise lies in Google Cloud, Machine Learning, and creating seamless user experiences.\n\nAt Deloitte, I work on developing solutions using AI. My skill set includes NodeJS, Angula",
+      "finalPath": "/aboutme",
+      "fullPageHeight": 2267,
+      "dark": false,
+      "brokenImages": [
+        "https://storage.googleapis.com/www.anshumankumar.dev/assets/IMG_5144.JPG"
+      ],
+      "substitutions": [],
+      "failedResources": [
+        "https://api.websitecarbon.com/b",
+        "https://storage.googleapis.com/www.anshumankumar.dev/assets/IMG_5144.JPG (net::ERR_BLOCKED_BY_ORB)"
+      ],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 1440,
+        "height": 2267
+      },
+      "sha256": "7ec1393b682954fb2533bb0dcafbe1f38356ef2715281567efb7b9798560db23"
+    },
+    {
+      "file": "2024-08-05-angular-cms-profile-about-mobile.png",
+      "commit": "4be3504bed45b9a682482cb3000f93779d1a10f5",
+      "date": "2024-08-05",
+      "title": "Blog",
+      "framework": "angular15",
+      "route": "/aboutme",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Anshuman Kumar\nBlogs\nAbout\nContact\nLinkedIn\nGithub\nResume\n\n👋 Hi, my name is\nAnshuman Kumar\n\nI am a tech enthusiast.\n\nI am an AI Consultant based in Bangalore. I specialize in crafting intelligent chat and voice bots that engage users and provide valuable insights. My expertise lies in Google Cloud, Machine Learning, and creating seamless user experiences.\n\nAt Deloitte, I work on developing solutions using AI. My skill set includes NodeJS, Angula",
+      "finalPath": "/aboutme",
+      "fullPageHeight": 2640,
+      "dark": false,
+      "brokenImages": [
+        "https://storage.googleapis.com/www.anshumankumar.dev/assets/IMG_5144.JPG"
+      ],
+      "substitutions": [],
+      "failedResources": [
+        "https://api.websitecarbon.com/b",
+        "https://storage.googleapis.com/www.anshumankumar.dev/assets/IMG_5144.JPG (net::ERR_BLOCKED_BY_ORB)"
+      ],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 390,
+        "height": 2640
+      },
+      "sha256": "af46f64554c6eb29ab06977191001c593cbbf93a9864473d5f9794f0112c21fd"
+    },
+    {
+      "file": "2024-08-05-angular-cms-profile-blogs-desktop.png",
+      "commit": "4be3504bed45b9a682482cb3000f93779d1a10f5",
+      "date": "2024-08-05",
+      "title": "Blog",
+      "framework": "angular15",
+      "route": "/blogs",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Anshuman Kumar\nBlogs\nAbout\nContact\nLinkedIn\nGithub\nResume\nWhat villain actually had a point?\nPublished On: 2018-04-01\nRoy Batty from the Blade Runner (1982) was the antagonist of the story but hardly a true villain. He was a genetically engineered life form that were ...\nRead More\nManipal – Shaping My Life for Good!\nPublished On: 2018-05-29\nComing to MIT has been one of the most important decisions in my life. I can recall that way back in the mo",
+      "finalPath": "/blogs",
+      "fullPageHeight": 2627,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [
+        "Retired Strapi endpoint served with the current CMS legacy payload, filtered to posts dated no later than this commit."
+      ],
+      "failedResources": [
+        "https://api.websitecarbon.com/b"
+      ],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 1440,
+        "height": 2627
+      },
+      "sha256": "1bde2a84a2fe6ad41fbe89c2089b00982f390011418f01183659ce4d102aef13"
+    },
+    {
+      "file": "2024-08-05-angular-cms-profile-blogs-mobile.png",
+      "commit": "4be3504bed45b9a682482cb3000f93779d1a10f5",
+      "date": "2024-08-05",
+      "title": "Blog",
+      "framework": "angular15",
+      "route": "/blogs",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Anshuman Kumar\nBlogs\nAbout\nContact\nLinkedIn\nGithub\nResume\nWhat villain actually had a point?\nPublished On: 2018-04-01\nRoy Batty from the Blade Runner (1982) was the antagonist of the story but hardly a true villain. He was a genetically engineered life form that were ...\nRead More\nManipal – Shaping My Life for Good!\nPublished On: 2018-05-29\nComing to MIT has been one of the most important decisions in my life. I can recall that way back in the mo",
+      "finalPath": "/blogs",
+      "fullPageHeight": 4885,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [
+        "Retired Strapi endpoint served with the current CMS legacy payload, filtered to posts dated no later than this commit."
+      ],
+      "failedResources": [
+        "https://api.websitecarbon.com/b"
+      ],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 390,
+        "height": 4885
+      },
+      "sha256": "99eb1237bb01ec1bfc9a763cde492db589e08611a9fdba2e9a7b3b7a46214daa"
+    },
+    {
+      "file": "2024-08-11-gatsby-first-build-home-desktop.png",
+      "commit": "ee5ea0c82c22d75e3ddeba66facfa09db09b3d64",
+      "date": "2024-08-11",
+      "title": "All posts | Gatsby Starter Blog",
+      "framework": "gatsby",
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Gatsby Starter Blog\n\nWritten by Kyle Mathews who lives and works in San Francisco building useful things. You should follow them on Twitter\n\nNew Beginnings\nMay 28, 2015\n\nThis is a custom description for SEO and Open Graph purposes, rather than the default generated excerpt. Simply add a description field to the frontmatter.\n\nMy Second Post!\nMay 06, 2015\n\nWow! I love blogging so much already. Did you know that \"despite its name, salted duck eggs c",
+      "finalPath": "/",
+      "fullPageHeight": 1000,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "2a7cd2d064bcd5907268e8f98d029f2cd33d5d3fe86c48e7687509a5087be591"
+    },
+    {
+      "file": "2024-08-11-gatsby-first-build-home-mobile.png",
+      "commit": "ee5ea0c82c22d75e3ddeba66facfa09db09b3d64",
+      "date": "2024-08-11",
+      "title": "All posts | Gatsby Starter Blog",
+      "framework": "gatsby",
+      "route": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Gatsby Starter Blog\n\nWritten by Kyle Mathews who lives and works in San Francisco building useful things. You should follow them on Twitter\n\nNew Beginnings\nMay 28, 2015\n\nThis is a custom description for SEO and Open Graph purposes, rather than the default generated excerpt. Simply add a description field to the frontmatter.\n\nMy Second Post!\nMay 06, 2015\n\nWow! I love blogging so much already. Did you know that \"despite its name, salted duck eggs c",
+      "finalPath": "/",
+      "fullPageHeight": 1054,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 390,
+        "height": 1054
+      },
+      "sha256": "66432818964eda472073cbb3d11f6caac15b9730b988a55945dbadd68a9e1c5c"
+    },
+    {
+      "file": "2024-12-28-gatsby-landing-header-home-desktop.png",
+      "commit": "99b054086aa6dfbed157363b7feb17c0f0e084d0",
+      "date": "2024-12-28",
+      "title": "Home | Anshuman's Blog",
+      "framework": "gatsby",
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Les Pensées d'Anshuman\nBlogs\nAbout\nContact\nResume\nAI Consultant, Code Enthusiast, and Life Explorer – Insights on Tech, Culture, and Everything In Between\n\nHey, I'm Anshuman Kumar, an AI Consultant based in Bengaluru. I work on building cutting-edge AI solutions, specializing in everything from Generative AI to ML-driven conversation agents.\n\nWhen I'm not architecting smart systems, you'll find me diving into the world of memes, movies, and rando",
+      "finalPath": "/",
+      "fullPageHeight": 1359,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 1440,
+        "height": 1359
+      },
+      "sha256": "48bcd4d3d67873b963be89916f6433089ca51c7c2c59956867036b7b8e622f8d"
+    },
+    {
+      "file": "2024-12-28-gatsby-landing-header-home-mobile.png",
+      "commit": "99b054086aa6dfbed157363b7feb17c0f0e084d0",
+      "date": "2024-12-28",
+      "title": "Home | Anshuman's Blog",
+      "framework": "gatsby",
+      "route": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Les Pensées d'Anshuman\nBlogs\nAbout\nContact\nResume\nAI Consultant, Code Enthusiast, and Life Explorer – Insights on Tech, Culture, and Everything In Between\n\nHey, I'm Anshuman Kumar, an AI Consultant based in Bengaluru. I work on building cutting-edge AI solutions, specializing in everything from Generative AI to ML-driven conversation agents.\n\nWhen I'm not architecting smart systems, you'll find me diving into the world of memes, movies, and rando",
+      "finalPath": "/",
+      "fullPageHeight": 1556,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 390,
+        "height": 1556
+      },
+      "sha256": "df26e4f44d91631009746a824a450c994149acc1da27286a32be851f1722c0fd"
+    },
+    {
+      "file": "2024-12-28-gatsby-landing-header-about-desktop.png",
+      "commit": "99b054086aa6dfbed157363b7feb17c0f0e084d0",
+      "date": "2024-12-28",
+      "title": "About | Anshuman's Blog",
+      "framework": "gatsby",
+      "route": "/about/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Les Pensées d'Anshuman\nBlogs\nAbout\nContact\nResume\nAI Consultant, Code Enthusiast, and Life Explorer – Insights on Tech, Culture, and Everything In Between\n\nHey, I'm Anshuman Kumar, an AI Consultant based in Bengaluru. I work on building cutting-edge AI solutions, specializing in everything from Generative AI to ML-driven conversation agents.\n\nWhen I'm not architecting smart systems, you'll find me diving into the world of memes, movies, and rando",
+      "finalPath": "/about/",
+      "fullPageHeight": 2351,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 1440,
+        "height": 2351
+      },
+      "sha256": "3314f92d70c15049185d6c9103a22ced01c37b58787f2a6ab50ca2ae4e29b916"
+    },
+    {
+      "file": "2024-12-28-gatsby-landing-header-about-mobile.png",
+      "commit": "99b054086aa6dfbed157363b7feb17c0f0e084d0",
+      "date": "2024-12-28",
+      "title": "About | Anshuman's Blog",
+      "framework": "gatsby",
+      "route": "/about/",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Les Pensées d'Anshuman\nBlogs\nAbout\nContact\nResume\nAI Consultant, Code Enthusiast, and Life Explorer – Insights on Tech, Culture, and Everything In Between\n\nHey, I'm Anshuman Kumar, an AI Consultant based in Bengaluru. I work on building cutting-edge AI solutions, specializing in everything from Generative AI to ML-driven conversation agents.\n\nWhen I'm not architecting smart systems, you'll find me diving into the world of memes, movies, and rando",
+      "finalPath": "/about/",
+      "fullPageHeight": 3122,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 390,
+        "height": 3122
+      },
+      "sha256": "79a350c2f7859761802d6a6abda6bf6e2bbf0cdfc511026f5c8a5bc292f377fa"
+    },
+    {
+      "file": "2025-02-05-gatsby-about-refactor-home-desktop.png",
+      "commit": "daea80859fd2cb29fb3076ee11cd751380aee1f9",
+      "date": "2025-02-05",
+      "title": "Home | Anshuman's Blog",
+      "framework": "gatsby",
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Les Pensées d'Anshuman\nBlogs\nAbout\nContact\nResume\nAI Consultant, Code Enthusiast, and Life Explorer – Insights on Tech, Culture, and Everything In Between\n\nHey, I'm Anshuman Kumar, an AI Consultant based in Bengaluru. I work on building cutting-edge AI solutions, specializing in everything from Generative AI to ML-driven conversation agents.\n\nWhen I'm not architecting smart systems, you'll find me diving into the world of memes, movies, and rando",
+      "finalPath": "/",
+      "fullPageHeight": 1359,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 1440,
+        "height": 1359
+      },
+      "sha256": "41fbea6f87d59f8bf787d82cfbd95df3b6b86520936217a614c368f3de2416b2"
+    },
+    {
+      "file": "2025-02-05-gatsby-about-refactor-home-mobile.png",
+      "commit": "daea80859fd2cb29fb3076ee11cd751380aee1f9",
+      "date": "2025-02-05",
+      "title": "Home | Anshuman's Blog",
+      "framework": "gatsby",
+      "route": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Les Pensées d'Anshuman\nBlogs\nAbout\nContact\nResume\nAI Consultant, Code Enthusiast, and Life Explorer – Insights on Tech, Culture, and Everything In Between\n\nHey, I'm Anshuman Kumar, an AI Consultant based in Bengaluru. I work on building cutting-edge AI solutions, specializing in everything from Generative AI to ML-driven conversation agents.\n\nWhen I'm not architecting smart systems, you'll find me diving into the world of memes, movies, and rando",
+      "finalPath": "/",
+      "fullPageHeight": 1556,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 390,
+        "height": 1556
+      },
+      "sha256": "c40f27d99f2417e1392f7f2e6603849c3a58903af63a198878c55ef44209151b"
+    },
+    {
+      "file": "2025-02-05-gatsby-about-refactor-about-desktop.png",
+      "commit": "daea80859fd2cb29fb3076ee11cd751380aee1f9",
+      "date": "2025-02-05",
+      "title": "About | Anshuman's Blog",
+      "framework": "gatsby",
+      "route": "/about/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Les Pensées d'Anshuman\nBlogs\nAbout\nContact\nResume\nAI Consultant, Code Enthusiast, and Life Explorer – Insights on Tech, Culture, and Everything In Between\n\nHey, I'm Anshuman Kumar, an AI Consultant based in Bengaluru. I work on building cutting-edge AI solutions, specializing in everything from Generative AI to ML-driven conversation agents.\n\nWhen I'm not architecting smart systems, you'll find me diving into the world of memes, movies, and rando",
+      "finalPath": "/about/",
+      "fullPageHeight": 2337,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 1440,
+        "height": 2337
+      },
+      "sha256": "9a8099cecb26fb46d383e719753778454e8e7ef8f1699ac60bb17da0eb7589f6"
+    },
+    {
+      "file": "2025-02-05-gatsby-about-refactor-about-mobile.png",
+      "commit": "daea80859fd2cb29fb3076ee11cd751380aee1f9",
+      "date": "2025-02-05",
+      "title": "About | Anshuman's Blog",
+      "framework": "gatsby",
+      "route": "/about/",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Les Pensées d'Anshuman\nBlogs\nAbout\nContact\nResume\nAI Consultant, Code Enthusiast, and Life Explorer – Insights on Tech, Culture, and Everything In Between\n\nHey, I'm Anshuman Kumar, an AI Consultant based in Bengaluru. I work on building cutting-edge AI solutions, specializing in everything from Generative AI to ML-driven conversation agents.\n\nWhen I'm not architecting smart systems, you'll find me diving into the world of memes, movies, and rando",
+      "finalPath": "/about/",
+      "fullPageHeight": 3108,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 390,
+        "height": 3108
+      },
+      "sha256": "74a2f1c475713e4badc967e9e6da48f595dda9d16c49cbf1cbf00474728ccaa9"
+    },
+    {
+      "file": "2026-01-21-nextjs-migration-home-desktop.png",
+      "commit": "ce7cf3ba43b38b045d6f87dcc15c7e234c7365f3",
+      "date": "2026-01-21",
+      "title": "Anshuman's Blog",
+      "framework": "next",
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Les Pensées d'Anshuman\nBlogs\nAbout\nContact\nResume\nSWE III, AI Enthusiast, and Life Explorer\n– Insights on Tech, Culture, and Everything In Between\n\nHey, I'm Anshuman Kumar, a SWE III based in Bangalore working at a leading ITAM+Finops company. I do cool stuff with AI at scale, building cutting-edge solutions from Generative AI to ML-driven conversation agents.\n\nWhen I'm not architecting smart systems, you'll find me diving into the world of memes",
+      "finalPath": "/",
+      "fullPageHeight": 1000,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "717343b69c723ae2829cf52eae92a0968e0a57c5947112334ec00858d9fdffa0"
+    },
+    {
+      "file": "2026-01-21-nextjs-migration-home-mobile.png",
+      "commit": "ce7cf3ba43b38b045d6f87dcc15c7e234c7365f3",
+      "date": "2026-01-21",
+      "title": "Anshuman's Blog",
+      "framework": "next",
+      "route": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Les Pensées d'Anshuman\nSWE III, AI Enthusiast, and Life Explorer\n– Insights on Tech, Culture, and Everything In Between\n\nHey, I'm Anshuman Kumar, a SWE III based in Bangalore working at a leading ITAM+Finops company. I do cool stuff with AI at scale, building cutting-edge solutions from Generative AI to ML-driven conversation agents.\n\nWhen I'm not architecting smart systems, you'll find me diving into the world of memes, movies, and random musing",
+      "finalPath": "/",
+      "fullPageHeight": 1221,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 390,
+        "height": 1221
+      },
+      "sha256": "619d1df0e513bf505c79f5fc1c86ae5c01cc64ef80ec5204f82aa629140e559f"
+    },
+    {
+      "file": "2026-01-21-nextjs-migration-home-desktop-dark.png",
+      "commit": "ce7cf3ba43b38b045d6f87dcc15c7e234c7365f3",
+      "date": "2026-01-21",
+      "title": "Anshuman's Blog",
+      "framework": "next",
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "deviceScaleFactor": 1
+      },
+      "theme": "dark",
+      "httpStatus": 200,
+      "text": "Les Pensées d'Anshuman\nBlogs\nAbout\nContact\nResume\nSWE III, AI Enthusiast, and Life Explorer\n– Insights on Tech, Culture, and Everything In Between\n\nHey, I'm Anshuman Kumar, a SWE III based in Bangalore working at a leading ITAM+Finops company. I do cool stuff with AI at scale, building cutting-edge solutions from Generative AI to ML-driven conversation agents.\n\nWhen I'm not architecting smart systems, you'll find me diving into the world of memes",
+      "finalPath": "/",
+      "fullPageHeight": 1000,
+      "dark": true,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 1440,
+        "height": 1000
+      },
+      "sha256": "8c85fd35261395bd90d9dbc1e3e5b632e098f8f8af45b2397aed3c736e460838"
+    },
+    {
+      "file": "2026-01-21-nextjs-migration-about-desktop.png",
+      "commit": "ce7cf3ba43b38b045d6f87dcc15c7e234c7365f3",
+      "date": "2026-01-21",
+      "title": "About | Anshuman's Blog",
+      "framework": "next",
+      "route": "/about/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Les Pensées d'Anshuman\nBlogs\nAbout\nContact\nResume\nAbout Me\n\nHey, I'm Anshuman Kumar, a SWE III based in Bangalore working at a leading ITAM+Finops company. I do cool stuff with AI at scale, building cutting-edge solutions from Generative AI to ML-driven conversation agents.\n\nWhen I'm not architecting smart systems, you'll find me diving into the world of memes, movies, and random musings.\n\nOn this blog, I share my thoughts on tech innovations, fi",
+      "finalPath": "/about/",
+      "fullPageHeight": 1490,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 1440,
+        "height": 1490
+      },
+      "sha256": "cbc684f177204b947e3cdb779baa6f271d5e0595636b2f48e46851c8d0c6d528"
+    },
+    {
+      "file": "2026-01-21-nextjs-migration-about-mobile.png",
+      "commit": "ce7cf3ba43b38b045d6f87dcc15c7e234c7365f3",
+      "date": "2026-01-21",
+      "title": "About | Anshuman's Blog",
+      "framework": "next",
+      "route": "/about/",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Les Pensées d'Anshuman\nAbout Me\n\nHey, I'm Anshuman Kumar, a SWE III based in Bangalore working at a leading ITAM+Finops company. I do cool stuff with AI at scale, building cutting-edge solutions from Generative AI to ML-driven conversation agents.\n\nWhen I'm not architecting smart systems, you'll find me diving into the world of memes, movies, and random musings.\n\nOn this blog, I share my thoughts on tech innovations, fitness (yes, I love cycling ",
+      "finalPath": "/about/",
+      "fullPageHeight": 2256,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 390,
+        "height": 2256
+      },
+      "sha256": "8a7f38b085d2e9fb71825bfdc223b810b197fdd8ee146f0e7dc8bce5848a4f3f"
+    },
+    {
+      "file": "2026-06-13-nextjs-editorial-design-home-desktop.png",
+      "commit": "d9297ee365fded499f5920cb571589d422f5f08b",
+      "date": "2026-06-13",
+      "title": "Notes by Anshuman",
+      "framework": "next",
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Notes by Anshuman\nESSAYS\nABOUT\nCONTACT\nRÉSUMÉ\nNOTES BY ANSHUMAN\nNotes on code,\nculture, and\nthe spaces\nin between.\nTHE AUTHOR\n\nAnshuman Kumar — software engineer in Bangalore, building AI systems at scale at an ITAM & FinOps company. He writes here about the things between the commits: long-distance cycling, marathons, the films he keeps coming back to, and the slow work of paying attention.\n\nREAD THE ESSAYS\nMORE ABOUT ME →\nTHE INDEX — LATEST NOT",
+      "finalPath": "/",
+      "fullPageHeight": 2049,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [
+        "Retired Google Cloud profile URL served with the original portrait tracked in Git (blob 8157a23b0127a62e3dd5a293e3679c3288742b36)."
+      ],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 1440,
+        "height": 2049
+      },
+      "sha256": "2714f03265536552956ae729d9d1be929fe87e50f9f8af3ed4e2c28d82d3bace"
+    },
+    {
+      "file": "2026-06-13-nextjs-editorial-design-home-mobile.png",
+      "commit": "d9297ee365fded499f5920cb571589d422f5f08b",
+      "date": "2026-06-13",
+      "title": "Notes by Anshuman",
+      "framework": "next",
+      "route": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Notes by Anshuman\nNOTES BY ANSHUMAN\nNotes on code,\nculture, and\nthe spaces\nin between.\nTHE AUTHOR\n\nAnshuman Kumar — software engineer in Bangalore, building AI systems at scale at an ITAM & FinOps company. He writes here about the things between the commits: long-distance cycling, marathons, the films he keeps coming back to, and the slow work of paying attention.\n\nREAD THE ESSAYS\nMORE ABOUT ME →\nTHE INDEX — LATEST NOTES\nview all →\n№ 01\nBuilding ",
+      "finalPath": "/",
+      "fullPageHeight": 2684,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [
+        "Retired Google Cloud profile URL served with the original portrait tracked in Git (blob 8157a23b0127a62e3dd5a293e3679c3288742b36)."
+      ],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 390,
+        "height": 2684
+      },
+      "sha256": "015fbd5cf9a30187f72973da6579609d02d50a892b2d0d7e266b3ea5f4173369"
+    },
+    {
+      "file": "2026-06-13-nextjs-editorial-design-home-desktop-dark.png",
+      "commit": "d9297ee365fded499f5920cb571589d422f5f08b",
+      "date": "2026-06-13",
+      "title": "Notes by Anshuman",
+      "framework": "next",
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "deviceScaleFactor": 1
+      },
+      "theme": "dark",
+      "httpStatus": 200,
+      "text": "Notes by Anshuman\nESSAYS\nABOUT\nCONTACT\nRÉSUMÉ\nNOTES BY ANSHUMAN\nNotes on code,\nculture, and\nthe spaces\nin between.\nTHE AUTHOR\n\nAnshuman Kumar — software engineer in Bangalore, building AI systems at scale at an ITAM & FinOps company. He writes here about the things between the commits: long-distance cycling, marathons, the films he keeps coming back to, and the slow work of paying attention.\n\nREAD THE ESSAYS\nMORE ABOUT ME →\nTHE INDEX — LATEST NOT",
+      "finalPath": "/",
+      "fullPageHeight": 2049,
+      "dark": true,
+      "brokenImages": [],
+      "substitutions": [
+        "Retired Google Cloud profile URL served with the original portrait tracked in Git (blob 8157a23b0127a62e3dd5a293e3679c3288742b36)."
+      ],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 1440,
+        "height": 2049
+      },
+      "sha256": "1aae8ef563b77de183428d7187cf183655c8949bd8f04bf55088e2942bffe3e8"
+    },
+    {
+      "file": "2026-06-13-nextjs-editorial-design-about-desktop.png",
+      "commit": "d9297ee365fded499f5920cb571589d422f5f08b",
+      "date": "2026-06-13",
+      "title": "About | Notes by Anshuman",
+      "framework": "next",
+      "route": "/about/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Notes by Anshuman\nESSAYS\nABOUT\nCONTACT\nRÉSUMÉ\nCOLOPHON\nAbout\nthe author.\n\nI\n'm a software engineer in Bangalore, working at scale on AI systems at an ITAM & FinOps company. The day job is generative AI and ML-driven conversation agents — the language models behind the conversations, the plumbing that makes them reliable.\n\nThe rest of the time I'm on a road bike or a marathon route, watching old films, or writing the pieces you'll find here. This ",
+      "finalPath": "/about/",
+      "fullPageHeight": 2476,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [
+        "Retired Google Cloud profile URL served with the original portrait tracked in Git (blob 8157a23b0127a62e3dd5a293e3679c3288742b36)."
+      ],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 1440,
+        "height": 2476
+      },
+      "sha256": "010ce2eee109f021af6da783362ef92b65d74860a61a85641ea44df5e492e85f"
+    },
+    {
+      "file": "2026-06-13-nextjs-editorial-design-about-mobile.png",
+      "commit": "d9297ee365fded499f5920cb571589d422f5f08b",
+      "date": "2026-06-13",
+      "title": "About | Notes by Anshuman",
+      "framework": "next",
+      "route": "/about/",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Notes by Anshuman\nCOLOPHON\nAbout\nthe author.\n\nI\n'm a software engineer in Bangalore, working at scale on AI systems at an ITAM & FinOps company. The day job is generative AI and ML-driven conversation agents — the language models behind the conversations, the plumbing that makes them reliable.\n\nThe rest of the time I'm on a road bike or a marathon route, watching old films, or writing the pieces you'll find here. This site is the quiet place betw",
+      "finalPath": "/about/",
+      "fullPageHeight": 3933,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [
+        "Retired Google Cloud profile URL served with the original portrait tracked in Git (blob 8157a23b0127a62e3dd5a293e3679c3288742b36)."
+      ],
+      "failedResources": [],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 569,
+        "height": 3933
+      },
+      "sha256": "7d101a17f591a494125caad40b6df8e4da3c5dd17d740f32172c62c799ad958b"
+    },
+    {
+      "file": "2026-10-04-nextjs-current-home-desktop.png",
+      "commit": "766c4c2454d594f118ae7344532da29edc1abe8d",
+      "date": "2026-10-04",
+      "title": "Anshuman Kumar | Software Engineer in Bangalore",
+      "framework": "next",
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Skip to content\nअंशुमन कुमार\nPosts\nNotes\nNow\nAbout\nSocials\nRésumé\nHi, I'm Anshuman Kumar.\n\nI'm a software engineer at Flexera in Bangalore, working on FinOps AI.\n\nOnline as @anshuman_kmr.\n\nI write about software, AI, and the things I get up to away from the keyboard: running, cycling, board games, cooking when I can, coffee, and films.\n\nPosts\nLong-form writing, mostly tech. 14 so far.\n→\nNotes\nShort things that don’t need a whole post.\n→\nNow\nWork,",
+      "finalPath": "/",
+      "fullPageHeight": 2217,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [
+        "https://api.websitecarbon.com/b"
+      ],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 1440,
+        "height": 2217
+      },
+      "sha256": "9b6255cc9d21e5a3ce8d7f1ed28ef8884b0296b0669e6e45d08547d4d4792fd2"
+    },
+    {
+      "file": "2026-10-04-nextjs-current-home-mobile.png",
+      "commit": "766c4c2454d594f118ae7344532da29edc1abe8d",
+      "date": "2026-10-04",
+      "title": "Anshuman Kumar | Software Engineer in Bangalore",
+      "framework": "next",
+      "route": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Skip to content\nअंशुमन कुमार\nHi, I'm Anshuman Kumar.\n\nI'm a software engineer at Flexera in Bangalore, working on FinOps AI.\n\nOnline as @anshuman_kmr.\n\nI write about software, AI, and the things I get up to away from the keyboard: running, cycling, board games, cooking when I can, coffee, and films.\n\nPosts\nLong-form writing, mostly tech. 14 so far.\n→\nNotes\nShort things that don’t need a whole post.\n→\nNow\nWork, training, and what I’ve been watchin",
+      "finalPath": "/",
+      "fullPageHeight": 3088,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [
+        "https://api.websitecarbon.com/b"
+      ],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 390,
+        "height": 3088
+      },
+      "sha256": "1e0bafd4442d7ad8ec0ee2b0efe506063354b28d0a2f2d2c7f8e8d3c0da8712d"
+    },
+    {
+      "file": "2026-10-04-nextjs-current-home-desktop-dark.png",
+      "commit": "766c4c2454d594f118ae7344532da29edc1abe8d",
+      "date": "2026-10-04",
+      "title": "Anshuman Kumar | Software Engineer in Bangalore",
+      "framework": "next",
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "deviceScaleFactor": 1
+      },
+      "theme": "dark",
+      "httpStatus": 200,
+      "text": "Skip to content\nअंशुमन कुमार\nPosts\nNotes\nNow\nAbout\nSocials\nRésumé\nHi, I'm Anshuman Kumar.\n\nI'm a software engineer at Flexera in Bangalore, working on FinOps AI.\n\nOnline as @anshuman_kmr.\n\nI write about software, AI, and the things I get up to away from the keyboard: running, cycling, board games, cooking when I can, coffee, and films.\n\nPosts\nLong-form writing, mostly tech. 14 so far.\n→\nNotes\nShort things that don’t need a whole post.\n→\nNow\nWork,",
+      "finalPath": "/",
+      "fullPageHeight": 2217,
+      "dark": true,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [
+        "https://api.websitecarbon.com/b"
+      ],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 1440,
+        "height": 2217
+      },
+      "sha256": "1c86d9dd51ab67e135e6defd7a366cb689e3f11114f00323c83991c07877f017"
+    },
+    {
+      "file": "2026-10-04-nextjs-current-about-desktop.png",
+      "commit": "766c4c2454d594f118ae7344532da29edc1abe8d",
+      "date": "2026-10-04",
+      "title": "About | Anshuman Kumar (@anshuman_kmr)",
+      "framework": "next",
+      "route": "/about/",
+      "viewport": {
+        "width": 1440,
+        "height": 1000,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Skip to content\nअंशुमन कुमार\nPosts\nNotes\nNow\nAbout\nSocials\nRésumé\nAbout Anshuman Kumar\n\nI'm a software engineer at Flexera in Bangalore, working on FinOps AI: cloud-cost anomaly detection and the agents that explain it.\n\nAway from work, I'm usually running or cycling, playing board games, watching films, or making coffee. I like cooking too, when I can.\n\nI write about software, AI, movies, cycling, running, and whatever else catches my attention.",
+      "finalPath": "/about/",
+      "fullPageHeight": 3502,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [
+        "https://api.websitecarbon.com/b"
+      ],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 1440,
+        "height": 3502
+      },
+      "sha256": "77977d70440bb6fcd1b0b93e30deed8a808acf4f1111be06f31855eebfdec168"
+    },
+    {
+      "file": "2026-10-04-nextjs-current-about-mobile.png",
+      "commit": "766c4c2454d594f118ae7344532da29edc1abe8d",
+      "date": "2026-10-04",
+      "title": "About | Anshuman Kumar (@anshuman_kmr)",
+      "framework": "next",
+      "route": "/about/",
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "deviceScaleFactor": 1
+      },
+      "theme": "light",
+      "httpStatus": 200,
+      "text": "Skip to content\nअंशुमन कुमार\nAbout Anshuman Kumar\n\nI'm a software engineer at Flexera in Bangalore, working on FinOps AI: cloud-cost anomaly detection and the agents that explain it.\n\nAway from work, I'm usually running or cycling, playing board games, watching films, or making coffee. I like cooking too, when I can.\n\nI write about software, AI, movies, cycling, running, and whatever else catches my attention. This is where those interests end up",
+      "finalPath": "/about/",
+      "fullPageHeight": 4171,
+      "dark": false,
+      "brokenImages": [],
+      "substitutions": [],
+      "failedResources": [
+        "https://api.websitecarbon.com/b"
+      ],
+      "pageErrors": [],
+      "imageDimensions": {
+        "width": 390,
+        "height": 4171
+      },
+      "sha256": "3efd27780670d56dcb9024fa777487c6617a7e579480efe36af08790993a4bb6"
+    }
+  ]
+}
